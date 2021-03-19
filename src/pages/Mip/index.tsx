@@ -4,7 +4,7 @@ import { Container, Title } from './styles';
 
 const Mip: React.FC = () => {
   return (
-    <Container >
+    <Container>
       <Title>MIP</Title>
     </Container>
   );

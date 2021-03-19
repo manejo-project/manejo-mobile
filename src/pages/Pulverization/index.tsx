@@ -4,7 +4,7 @@ import { Container, Title } from './styles';
 
 const Pulverization: React.FC = () => {
   return (
-    <Container >
+    <Container>
       <Title>Pulverization</Title>
     </Container>
   );

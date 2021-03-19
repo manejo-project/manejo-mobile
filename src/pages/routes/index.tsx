@@ -9,12 +9,12 @@ const Routes: React.FC = () => (
   <Navi.Navigator
     screenOptions={{
       headerShown: false,
-      cardStyle: {backgroundColor: '#ECF0F5'}
+      cardStyle: { backgroundColor: '#ECF0F5' },
     }}
   >
-    <Navi.Screen name="Mip" component={Mip}/>
-    <Navi.Screen name="Pulverization" component={Pulverization}/>
+    <Navi.Screen name="Mip" component={Mip} />
+    <Navi.Screen name="Pulverization" component={Pulverization} />
   </Navi.Navigator>
-)
+);
 
 export default Routes;

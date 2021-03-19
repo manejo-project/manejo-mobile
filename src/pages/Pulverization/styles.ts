@@ -9,4 +9,3 @@ const Title = styled.Text`
 `;
 
 export { Container, Title };
-
