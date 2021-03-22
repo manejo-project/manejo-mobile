@@ -5,6 +5,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  margin: 8px 0;
 `;
 
 export const HeaderText = styled.Text`
