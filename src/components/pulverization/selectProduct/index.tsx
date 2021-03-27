@@ -10,13 +10,26 @@ import { ItemListText, ItemList, ProductList, Container } from './styles';
 interface PickerProps {
   nextStep(): void;
   prevStep(): void;
+  product: {
+    classe: string;
+    name: string;
+    target: string;
+    dose: string;
+    productPrice: string;
+  };
+  onChangeHandlerProduct(input: string, value: any): void;
 }
 
 export interface Product {
   name: string;
 }
 
-const SelectProduct: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
+const SelectProduct: React.FC<PickerProps> = ({
+  nextStep,
+  prevStep,
+  product,
+  onChangeHandlerProduct,
+}) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -32,9 +45,13 @@ const SelectProduct: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
     setProducts(aux);
   }, []);
 
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
+  const next = useCallback(
+    value => {
+      onChangeHandlerProduct('name', value);
+      nextStep();
+    },
+    [nextStep, onChangeHandlerProduct],
+  );
 
   const prev = useCallback(() => {
     prevStep();
@@ -52,14 +69,17 @@ const SelectProduct: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
             data={products}
             keyExtractor={productItem => productItem.name}
             renderItem={({ item: productItem }) => (
-              <ItemList onPress={next}>
+              <ItemList
+                onPress={() => next(productItem.name)}
+                selected={productItem.name === product.name}
+              >
                 <ItemListText>{productItem.name}</ItemListText>
               </ItemList>
             )}
           />
         </Card>
 
-        <ButtonText size="large" color="yellow" onPress={prev}>
+        <ButtonText size="large" color="yellow" onPress={next}>
           Anterior
         </ButtonText>
       </Container>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ButtonText from '../../buttonText';
@@ -10,13 +11,26 @@ import { ItemListText, ItemList, TargetList, Container } from './styles';
 interface PickerProps {
   nextStep(): void;
   prevStep(): void;
+  product: {
+    classe: string;
+    name: string;
+    target: string;
+    dose: string;
+    productPrice: string;
+  };
+  onChangeHandlerProduct(input: string, value: any): void;
 }
 
 export interface Target {
   name: string;
 }
 
-const SelectTarget: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
+const SelectTarget: React.FC<PickerProps> = ({
+  nextStep,
+  prevStep,
+  product,
+  onChangeHandlerProduct,
+}) => {
   const [targets, setTargets] = useState<Target[]>([]);
 
   useEffect(() => {
@@ -32,9 +46,13 @@ const SelectTarget: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
     setTargets(aux);
   }, []);
 
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
+  const next = useCallback(
+    value => {
+      onChangeHandlerProduct('target', value);
+      nextStep();
+    },
+    [nextStep, onChangeHandlerProduct],
+  );
 
   const prev = useCallback(() => {
     prevStep();
@@ -52,7 +70,10 @@ const SelectTarget: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
             data={targets}
             keyExtractor={targetItem => targetItem.name}
             renderItem={({ item: targetItem }) => (
-              <ItemList onPress={next}>
+              <ItemList
+                onPress={() => next(targetItem.name)}
+                selected={targetItem.name === product.target}
+              >
                 <ItemListText>{targetItem.name.toUpperCase()}</ItemListText>
               </ItemList>
             )}

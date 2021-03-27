@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ButtonText from '../../buttonText';
@@ -10,13 +11,28 @@ import { ItemListText, ItemList, ClassList, Container } from './styles';
 interface PickerProps {
   nextStep(): void;
   prevStep(): void;
+  type: string;
+  product: {
+    classe: string;
+    name: string;
+    target: string;
+    dose: string;
+    productPrice: string;
+  };
+  onChangeHandlerProduct(input: string, value: any): void;
 }
 
 export interface Class {
   name: string;
 }
 
-const SelectClass: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
+const SelectClass: React.FC<PickerProps> = ({
+  nextStep,
+  prevStep,
+  type,
+  product,
+  onChangeHandlerProduct,
+}) => {
   const [classes, setClasses] = useState<Class[]>([]);
 
   useEffect(() => {
@@ -38,9 +54,13 @@ const SelectClass: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
     setClasses(aux);
   }, []);
 
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
+  const next = useCallback(
+    value => {
+      onChangeHandlerProduct('classe', value);
+      nextStep();
+    },
+    [nextStep, onChangeHandlerProduct],
+  );
 
   const prev = useCallback(() => {
     prevStep();
@@ -58,16 +78,25 @@ const SelectClass: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
             data={classes}
             keyExtractor={classItem => classItem.name}
             renderItem={({ item: classItem }) => (
-              <ItemList onPress={next}>
+              <ItemList
+                onPress={() => next(classItem.name)}
+                selected={classItem.name === product.classe}
+              >
                 <ItemListText>{classItem.name}</ItemListText>
               </ItemList>
             )}
           />
         </Card>
 
-        <ButtonText size="large" color="yellow" onPress={prev}>
-          Anterior
-        </ButtonText>
+        {type === 'new' ? (
+          <ButtonText size="large" color="red" onPress={prev}>
+            Cancelar novo produto
+          </ButtonText>
+        ) : (
+          <ButtonText size="large" color="yellow" onPress={prev}>
+            Anterior
+          </ButtonText>
+        )}
       </Container>
     </View>
   );

@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-types */
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Picker } from '@react-native-picker/picker';
 import React, { useCallback, useState } from 'react';
-import { View, Text } from 'react-native';
+import Calendar from '@react-native-community/datetimepicker';
+import { View } from 'react-native';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
@@ -14,17 +17,52 @@ import CalendarContainer from '../../calendarContainer';
 
 interface OperationDataProps {
   nextStep(): void;
+  type: string;
+  pulverization: {
+    growthPhase: string;
+    selected: boolean;
+    caldaVolume: string;
+    sampleDate: Date;
+    datePartial: Date;
+  };
+  onChangeHandlerPulverization(input: string, value: any): void;
 }
 
-const OperationData: React.FC<OperationDataProps> = ({ nextStep }) => {
-  const [selected, setSelected] = useState();
-  const [selectedNo, setSelectedNo] = useState(false);
-  const [selectedYes, setSelectedYes] = useState(false);
-  const [teste, setTeste] = useState('0,0');
+const OperationData: React.FC<OperationDataProps> = ({
+  nextStep,
+  type,
+  onChangeHandlerPulverization,
+  pulverization,
+}) => {
+  const [show, setShow] = useState(false);
+  const [showPartial, setShowPartial] = useState(false);
 
   const next = useCallback(() => {
     nextStep();
   }, [nextStep]);
+
+  const onChange = (event: Event, selectedDate: Date | undefined): void => {
+    const currentDate = selectedDate || pulverization.sampleDate;
+    setShow(false);
+    onChangeHandlerPulverization('sampleDate', currentDate);
+  };
+
+  const showMode = () => {
+    setShow(true);
+  };
+
+  const onChangePartial = (
+    event: Event,
+    selectedDate: Date | undefined,
+  ): void => {
+    const currentDate = selectedDate || pulverization.datePartial;
+    setShowPartial(false);
+    onChangeHandlerPulverization('datePartial', currentDate);
+  };
+
+  const showModePartial = () => {
+    setShowPartial(true);
+  };
 
   return (
     <KeyboardAwareScrollView>
@@ -34,53 +72,87 @@ const OperationData: React.FC<OperationDataProps> = ({ nextStep }) => {
         </Header>
         <Container>
           <Card title="Dados da Operação">
-            <CalendarContainer date={new Date()} />
+            <CalendarContainer
+              onPress={showMode}
+              date={pulverization.sampleDate}
+            />
+            {show && (
+              <Calendar
+                testID="dateTimePicker"
+                value={pulverization.sampleDate}
+                display="default"
+                onChange={onChange}
+              />
+            )}
           </Card>
           <Card title="Selecione o estádio da cultura">
             <PickerContainer>
               <Picker
-                selectedValue={selected}
-                onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
+                selectedValue={pulverization.growthPhase}
+                onValueChange={(itemValue, itemIndex) =>
+                  onChangeHandlerPulverization('growthPhase', itemValue)
+                }
               >
-                <Picker.Item label="V4" value="v4" />
-                <Picker.Item label="V5" value="v5" />
+                <Picker.Item label="V1" value="V1" />
+                <Picker.Item label="V2" value="V2" />
+                <Picker.Item label="V3" value="V3" />
+                <Picker.Item label="V4" value="V4" />
+                <Picker.Item label="V5" value="V5" />
               </Picker>
             </PickerContainer>
           </Card>
           <Card title="Volume de calda (l/ha)">
             <Input
               onChangeText={value => {
-                setTeste(value);
+                onChangeHandlerPulverization('caldaVolume', value);
               }}
-              value={teste}
+              value={pulverization.caldaVolume}
+              keyboardType="numeric"
             />
           </Card>
           <Card title="Pulverização Parcial?">
             <Buttons>
               <No
                 onPress={() => {
-                  setSelectedNo(true);
-                  setSelectedYes(false);
+                  onChangeHandlerPulverization('selected', false);
                 }}
-                flag={selectedNo}
+                flag={!pulverization.selected}
               >
                 <NoText>Não</NoText>
               </No>
               <Yes
                 onPress={() => {
-                  setSelectedYes(true);
-                  setSelectedNo(false);
+                  onChangeHandlerPulverization('selected', true);
                 }}
-                flag={selectedYes}
+                flag={pulverization.selected}
               >
                 <YesText>Sim</YesText>
               </Yes>
             </Buttons>
-            {selectedYes && <CalendarContainer date={new Date()} />}
+            {pulverization.selected && (
+              <CalendarContainer
+                onPress={showModePartial}
+                date={pulverization.datePartial}
+              />
+            )}
+            {showPartial && (
+              <Calendar
+                testID="datePartialTimePicker"
+                value={pulverization.datePartial}
+                display="default"
+                onChange={onChangePartial}
+              />
+            )}
           </Card>
-          <ButtonText size="large" color="green" onPress={next}>
-            Próximo
-          </ButtonText>
+          {type === 'update' ? (
+            <ButtonText size="large" color="green" onPress={next}>
+              Próximo
+            </ButtonText>
+          ) : (
+            <ButtonText size="large" color="green" onPress={next}>
+              Próximo
+            </ButtonText>
+          )}
         </Container>
       </View>
     </KeyboardAwareScrollView>

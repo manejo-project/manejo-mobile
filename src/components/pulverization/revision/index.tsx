@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -38,65 +38,86 @@ import {
   SectionText,
 } from './styles';
 
-interface PickerProps {
-  nextStep(): void;
-  prevStep(): void;
+interface Props {
+  edit(): void;
+  newProduct(): void;
+  pulverization: {
+    growthPhase: string;
+    selected: boolean;
+    caldaVolume: string;
+    sampleDate: Date;
+    datePartial: Date;
+  };
+  products: {
+    classe: string;
+    name: string;
+    target: string;
+    dose: string;
+    productPrice: string;
+  }[];
 }
 
 export interface Product {
   name: string;
 }
 
-const Revision: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
-
-  const prev = useCallback(() => {
-    prevStep();
-  }, [prevStep]);
-
+const Revision: React.FC<Props> = ({
+  pulverization,
+  products,
+  edit,
+  newProduct,
+}) => {
   return (
     <KeyboardAwareScrollView>
       <View>
         <Header onPressCancel={() => console.log('cancelar')}>Revisão</Header>
         <Container>
-          <Card title="Operação" edit={() => console.log('editar')}>
+          <Card title="Operação" edit={edit}>
             <DateOperation>
               <ImageDateOperation source={iconCalendar} />
-              <TextDateOperation>17/02/2021</TextDateOperation>
+              <TextDateOperation>
+                {pulverization.sampleDate.getDate()} /{' '}
+                {pulverization.sampleDate.getMonth() + 1} /{' '}
+                {pulverization.sampleDate.getFullYear()}
+              </TextDateOperation>
             </DateOperation>
             <Data>
               <CultureStage>
                 <ImageCultureStage source={leaf} />
-                <CultureStageText>V3</CultureStageText>
+                <CultureStageText>{pulverization.growthPhase}</CultureStageText>
                 <LabelCultureStage>Cultura</LabelCultureStage>
               </CultureStage>
               <Volume>
                 <ImageVolume source={drop} />
-                <VolumeText>165</VolumeText>
+                <VolumeText>{pulverization.caldaVolume}</VolumeText>
                 <LabelVolume>Volume de Calda (l/ha)</LabelVolume>
               </Volume>
             </Data>
-            <DatePartial>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <ImageDatePartial source={iconCalendar} />
-                <TextDatePartial>17/02/2021</TextDatePartial>
-              </View>
-              <LabelDatePartial>Pulverização Parcial</LabelDatePartial>
-            </DatePartial>
+            {pulverization.selected && (
+              <DatePartial>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ImageDatePartial source={iconCalendar} />
+                  <TextDatePartial>
+                    {pulverization.datePartial.getDate()} /{' '}
+                    {pulverization.datePartial.getMonth() + 1} /{' '}
+                    {pulverization.datePartial.getFullYear()}
+                  </TextDatePartial>
+                </View>
+                <LabelDatePartial>Pulverização Parcial</LabelDatePartial>
+              </DatePartial>
+            )}
           </Card>
           <Card title="Produtos Usados">
             <ButtonText
               size="small"
               color="green"
-              onPress={next}
+              onPress={newProduct}
               style={{ marginTop: 0 }}
             >
               + Novo Produto
@@ -105,47 +126,55 @@ const Revision: React.FC<PickerProps> = ({ nextStep, prevStep }) => {
             <Section>
               <SectionText>Herbicida</SectionText>
             </Section>
+            {products.map(product => {
+              return (
+                <Card
+                  key={product.name}
+                  color="beige"
+                  title={product.name}
+                  remove={() => console.log('remover')}
+                >
+                  <TargetContainer>
+                    <Feather name="target" color="#D14A61" size={40} />
 
-            <Card
-              color="beige"
-              title="Round Wg (KG)"
-              remove={() => console.log('remover')}
-            >
-              <TargetContainer>
-                <Feather name="target" color="#D14A61" size={40} />
-
-                <TextTarget>Folhas Largas (Pós-Emergencia)</TextTarget>
-              </TargetContainer>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <ContainerData>
-                  <HeaderData>
-                    <Ionicons name="eyedrop" color="#FFC042" size={35} />
-                    <LabelData>Dose</LabelData>
-                  </HeaderData>
-                  <TextData>0,82</TextData>
-                </ContainerData>
-                <ContainerData>
-                  <HeaderData>
-                    <MaterialCommunityIcons
-                      name="cash"
-                      color="#26E7A6"
-                      size={40}
-                    />
-                    <LabelData>Preço</LabelData>
-                  </HeaderData>
-                  <TextData>R$ 60,00</TextData>
-                </ContainerData>
-              </View>
-            </Card>
+                    <TextTarget>{product.target}</TextTarget>
+                  </TargetContainer>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <ContainerData>
+                      <HeaderData>
+                        <Ionicons name="eyedrop" color="#FFC042" size={35} />
+                        <LabelData>Dose</LabelData>
+                      </HeaderData>
+                      <TextData>{product.dose}</TextData>
+                    </ContainerData>
+                    <ContainerData>
+                      <HeaderData>
+                        <MaterialCommunityIcons
+                          name="cash"
+                          color="#26E7A6"
+                          size={40}
+                        />
+                        <LabelData>Preço</LabelData>
+                      </HeaderData>
+                      <TextData>R$ {product.productPrice}</TextData>
+                    </ContainerData>
+                  </View>
+                </Card>
+              );
+            })}
           </Card>
 
-          <ButtonText size="large" color="green" onPress={prev}>
+          <ButtonText
+            size="large"
+            color="green"
+            onPress={() => console.log('salvar')}
+          >
             Salvar
           </ButtonText>
         </Container>

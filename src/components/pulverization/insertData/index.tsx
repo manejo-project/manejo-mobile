@@ -1,25 +1,49 @@
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import React, { useCallback, useState } from 'react';
-import { View } from 'react-native';
+import { View, Alert, Modal, StyleSheet, Text, Pressable } from 'react-native';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
 import Input from '../../input';
 
-import { Container, Buttons, Cards } from './styles';
+import {
+  Container,
+  Buttons,
+  Cards,
+  CenteredView,
+  ModalView,
+  HeaderView,
+  BodyView,
+  ModalText,
+  ButtonsYesNo,
+  No,
+  Yes,
+  NoText,
+  YesText,
+} from './styles';
 
 interface OperationDataProps {
-  nextStep(): void;
+  nextYes(): void;
+  nextNo(): void;
   prevStep(): void;
+  product: {
+    classe: string;
+    name: string;
+    target: string;
+    dose: string;
+    productPrice: string;
+  };
+  onChangeHandlerProduct(input: string, value: any): void;
 }
 
-const InsetData: React.FC<OperationDataProps> = ({ nextStep, prevStep }) => {
-  const [teste1, setTeste1] = useState('0,0');
-  const [teste2, setTeste2] = useState('0,0');
-
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
+const InsetData: React.FC<OperationDataProps> = ({
+  nextYes,
+  nextNo,
+  prevStep,
+  product,
+  onChangeHandlerProduct,
+}) => {
+  const [modalVisible, setModalVisible] = useState(false);
 
   const prev = useCallback(() => {
     prevStep();
@@ -36,21 +60,50 @@ const InsetData: React.FC<OperationDataProps> = ({ nextStep, prevStep }) => {
             <Card title="Dosagem do Produto (Unidade/ha)">
               <Input
                 onChangeText={value => {
-                  setTeste1(value);
+                  onChangeHandlerProduct('dose', value);
                 }}
-                value={teste1}
+                value={product.dose}
+                keyboardType="numeric"
               />
             </Card>
 
             <Card title="Preço do produto (R$/Unidade)">
               <Input
                 onChangeText={value => {
-                  setTeste2(value);
+                  onChangeHandlerProduct('productPrice', value);
                 }}
-                value={teste2}
+                value={product.productPrice}
+                keyboardType="numeric"
               />
             </Card>
           </Cards>
+          <Modal
+            animationType="fade"
+            visible={modalVisible}
+            transparent
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <CenteredView>
+              <ModalView>
+                <HeaderView>
+                  <ModalText>Adicionar mais um produto</ModalText>
+                </HeaderView>
+                <BodyView>
+                  <ButtonsYesNo>
+                    <No onPress={nextNo}>
+                      <NoText>Não</NoText>
+                    </No>
+                    <Yes onPress={nextYes}>
+                      <YesText>Sim</YesText>
+                    </Yes>
+                  </ButtonsYesNo>
+                </BodyView>
+              </ModalView>
+            </CenteredView>
+          </Modal>
           <Buttons>
             <ButtonText
               size="small"
@@ -63,7 +116,7 @@ const InsetData: React.FC<OperationDataProps> = ({ nextStep, prevStep }) => {
             <ButtonText
               size="small"
               color="green"
-              onPress={next}
+              onPress={() => setModalVisible(true)}
               style={{ marginLeft: 4 }}
             >
               Próximo

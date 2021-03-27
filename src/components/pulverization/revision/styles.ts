@@ -63,10 +63,12 @@ export const ImageVolume = styled.Image``;
 export const VolumeText = styled.Text`
   position: absolute;
   top: 30px;
-  left: 45px;
+  left: 25px;
   font-family: 'RobotoSlab-Bold';
   font-size: 25px;
   color: #ffffff;
+  width: 80px;
+  text-align: center;
 `;
 
 export const LabelVolume = styled.Text`

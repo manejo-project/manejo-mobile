@@ -1,6 +1,10 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { FlatList, TouchableOpacity } from 'react-native';
 import { Target } from '.';
+
+interface ItemListProps {
+  selected: boolean;
+}
 
 export const Container = styled.View`
   padding: 0 16px;
@@ -10,7 +14,7 @@ export const TargetList = styled(FlatList as new () => FlatList<Target>)`
   height: 340px;
 `;
 
-export const ItemList = styled(TouchableOpacity)`
+export const ItemList = styled(TouchableOpacity)<ItemListProps>`
   width: 100%;
   height: 40px;
   background: white;
@@ -21,6 +25,17 @@ export const ItemList = styled(TouchableOpacity)`
   border-color: #000000;
   justify-content: flex-start;
   align-items: center;
+
+  ${props => {
+    if (props.selected) {
+      return css`
+        background-color: #3c8dbc;
+      `;
+    }
+    return css`
+      background-color: #ffffff;
+    `;
+  }}
 `;
 
 export const ItemListText = styled.Text`
