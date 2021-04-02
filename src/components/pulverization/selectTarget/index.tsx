@@ -32,19 +32,8 @@ const SelectTarget: React.FC<PickerProps> = ({
   onChangeHandlerProduct,
 }) => {
   const [targets, setTargets] = useState<Target[]>([]);
-
-  useEffect(() => {
-    const aux = [
-      { name: 'Outras Doenças Fungicidas' },
-      { name: 'Ferrugem Asiática' },
-      { name: 'Mancha Parda' },
-      { name: 'Mancha Alvo' },
-      { name: 'Mofo branco' },
-      { name: 'Olídio' },
-    ];
-
-    setTargets(aux);
-  }, []);
+  const [filterList, setFilterList] = useState<Target[]>([]);
+  const [filter, setFilter] = useState('');
 
   const next = useCallback(
     value => {
@@ -58,6 +47,55 @@ const SelectTarget: React.FC<PickerProps> = ({
     prevStep();
   }, [prevStep]);
 
+  useEffect(() => {
+    let data = [{ name: '' }];
+
+    switch (product.classe) {
+      case 'Acaricida':
+        next('Ácaro');
+        return;
+      case 'Fungicida':
+        data = [
+          { name: 'Outras Doenças Fungicidas' },
+          { name: 'Ferrugem Asiática' },
+          { name: 'Mancha Parda' },
+          { name: 'Mancha Alvo' },
+          { name: 'Mofo branco' },
+          { name: 'Olídio' },
+        ];
+        break;
+      case 'Herbicida':
+        data = [
+          { name: 'Folhas largas' },
+          { name: 'Folhas estreitas ' },
+          { name: 'Dessecação' },
+        ];
+        break;
+      default:
+        data = [
+          { name: 'Outros insetos praga' },
+          { name: 'Lagarta-da-soja' },
+          { name: 'Percevejo-marrom' },
+          { name: 'Lagarta-falsa-medideira' },
+        ];
+        break;
+    }
+
+    setTargets(data);
+    setFilterList(data);
+  }, [next, product.classe]);
+
+  const onChangeHandler = useCallback(
+    (value: string) => {
+      setFilter(value);
+      const filtro = targets.filter(item =>
+        item.name.toUpperCase().includes(value.toUpperCase()),
+      );
+      setFilterList(filtro);
+    },
+    [setFilterList, targets],
+  );
+
   return (
     <View>
       <Header onPressCancel={() => console.log('cancelar')}>
@@ -65,9 +103,15 @@ const SelectTarget: React.FC<PickerProps> = ({
       </Header>
       <Container>
         <Card title="Selecione um alvo/função">
-          <SearchInput placeholder="Buscar por Alvo/Função" />
+          <SearchInput
+            placeholder="Buscar por Alvo/Função"
+            value={filter}
+            onChangeText={value => {
+              onChangeHandler(value);
+            }}
+          />
           <TargetList
-            data={targets}
+            data={filterList}
             keyExtractor={targetItem => targetItem.name}
             renderItem={({ item: targetItem }) => (
               <ItemList

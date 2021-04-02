@@ -134,10 +134,12 @@ const FormPulverization: React.FC = () => {
         />
       );
     case 4:
+      if (product.classe === 'Acaricida') aux = 2;
+      else aux = 3;
       return (
         <SelectProduct
           nextStep={() => setStep(5)}
-          prevStep={() => setStep(3)}
+          prevStep={() => setStep(aux)}
           product={product}
           onChangeHandlerProduct={onChangeHandlerProduct}
         />

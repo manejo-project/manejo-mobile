@@ -123,13 +123,13 @@ export const TargetContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 100%;
   margin-bottom: 8px;
 `;
 
 export const TextTarget = styled.Text`
   font-family: 'RobotoSlab-Bold';
   font-size: 20px;
-  width: 200px;
   margin-left: 8px;
 `;
 

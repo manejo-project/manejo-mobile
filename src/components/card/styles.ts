@@ -16,6 +16,8 @@ export const HeaderText = styled.Text`
   font-size: 25px;
   color: #ffffff;
   padding: 4px 8px;
+  max-width: 250px;
+  text-align: center;
 `;
 
 export const Header = styled.View`

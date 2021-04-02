@@ -34,24 +34,19 @@ const SelectClass: React.FC<PickerProps> = ({
   onChangeHandlerProduct,
 }) => {
   const [classes, setClasses] = useState<Class[]>([]);
+  const [filterList, setFilterList] = useState<Class[]>([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     const aux = [
       { name: 'Acaricida' },
-      { name: 'Bactericida' },
-      { name: 'Espalhante Adesivo' },
       { name: 'Fungicida' },
-      { name: 'Estimulante' },
       { name: 'Herbicida' },
-      { name: 'Acaricida2' },
-      { name: 'Bactericida2' },
-      { name: 'Espalhante Adesivo2' },
-      { name: 'Fungicida2' },
-      { name: 'Estimulante2' },
-      { name: 'Herbicida2' },
+      { name: 'Inseticida' },
     ];
 
     setClasses(aux);
+    setFilterList(aux);
   }, []);
 
   const next = useCallback(
@@ -66,6 +61,17 @@ const SelectClass: React.FC<PickerProps> = ({
     prevStep();
   }, [prevStep]);
 
+  const onChangeHandler = useCallback(
+    (value: string) => {
+      setFilter(value);
+      const filtro = classes.filter(item =>
+        item.name.toUpperCase().includes(value.toUpperCase()),
+      );
+      setFilterList(filtro);
+    },
+    [setFilterList, classes],
+  );
+
   return (
     <View>
       <Header onPressCancel={() => console.log('cancelar')}>
@@ -73,9 +79,15 @@ const SelectClass: React.FC<PickerProps> = ({
       </Header>
       <Container>
         <Card title="Selecione uma classe">
-          <SearchInput placeholder="Buscar por Classe" />
+          <SearchInput
+            placeholder="Buscar por Classe"
+            value={filter}
+            onChangeText={value => {
+              onChangeHandler(value);
+            }}
+          />
           <ClassList
-            data={classes}
+            data={filterList}
             keyExtractor={classItem => classItem.name}
             renderItem={({ item: classItem }) => (
               <ItemList
