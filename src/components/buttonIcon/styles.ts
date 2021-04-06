@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/native';
-import { BaseButton } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 interface ContainerProps {
@@ -11,7 +11,7 @@ interface IconProps {
   colorIcon: 'blue' | 'white' | 'gray' | 'black';
 }
 
-export const Container = styled(BaseButton)<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   justify-content: center;
   align-items: center;
 
