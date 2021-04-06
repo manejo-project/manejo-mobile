@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
@@ -67,10 +68,11 @@ const Revision: React.FC<Props> = ({
   edit,
   newProduct,
 }) => {
+  const navigation = useNavigation();
   return (
     <KeyboardAwareScrollView>
       <View>
-        <Header onPressCancel={() => console.log('cancelar')}>Revisão</Header>
+        <Header>Revisão</Header>
         <Container>
           <Card title="Operação" edit={edit}>
             <DateOperation>
@@ -173,7 +175,9 @@ const Revision: React.FC<Props> = ({
           <ButtonText
             size="large"
             color="green"
-            onPress={() => console.log('salvar')}
+            onPress={() => {
+              navigation.goBack();
+            }}
           >
             Salvar
           </ButtonText>

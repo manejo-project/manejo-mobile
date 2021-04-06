@@ -74,9 +74,7 @@ const SelectClass: React.FC<PickerProps> = ({
 
   return (
     <View>
-      <Header onPressCancel={() => console.log('cancelar')}>
-        Novo Produto
-      </Header>
+      <Header>Novo Produto</Header>
       <Container>
         <Card title="Selecione uma classe">
           <SearchInput

@@ -162,13 +162,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
 
   return (
     <>
-      <Header
-        onPressCancel={() => {
-          console.log('Button Cancel');
-        }}
-      >
-        Flutuação das Pragas
-      </Header>
+      <Header>Flutuação das Pragas</Header>
       <Container>
         <Card title="Selecione a praga:">
           <SearchInput

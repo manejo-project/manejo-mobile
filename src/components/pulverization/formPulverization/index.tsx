@@ -28,7 +28,7 @@ const FormPulverization: React.FC = () => {
   const [pulverization, setPulverization] = useState<IPulverization>({
     growthPhase: 'V5',
     selected: false,
-    caldaVolume: '0,0',
+    caldaVolume: '',
     sampleDate: new Date(),
     datePartial: new Date(),
   });
@@ -36,8 +36,8 @@ const FormPulverization: React.FC = () => {
     classe: '',
     name: '',
     target: '',
-    dose: '0,0',
-    productPrice: '0,0',
+    dose: '',
+    productPrice: '',
   });
 
   const [products, setProducts] = useState<IProduct[]>([]);

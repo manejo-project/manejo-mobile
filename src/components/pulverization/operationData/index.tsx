@@ -67,9 +67,7 @@ const OperationData: React.FC<OperationDataProps> = ({
   return (
     <KeyboardAwareScrollView>
       <View>
-        <Header onPressCancel={() => console.log('cancelar')}>
-          Dados da Operação
-        </Header>
+        <Header>Dados da Operação</Header>
         <Container>
           <Card title="Dados da Operação">
             <CalendarContainer
@@ -108,6 +106,7 @@ const OperationData: React.FC<OperationDataProps> = ({
               }}
               value={pulverization.caldaVolume}
               keyboardType="numeric"
+              placeholder="0,0"
             />
           </Card>
           <Card title="Pulverização Parcial?">

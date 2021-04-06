@@ -146,13 +146,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
 
   return (
     <>
-      <Header
-        onPressCancel={() => {
-          console.log('Button Cancel');
-        }}
-      >
-        Inimigos Naturais
-      </Header>
+      <Header>Inimigos Naturais</Header>
       <Container>
         <Card title="Selecione o inimigo:">
           <SearchInput

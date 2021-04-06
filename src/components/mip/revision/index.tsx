@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import { View, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ProgressChart } from 'react-native-chart-kit';
+import { useNavigation } from '@react-navigation/native';
+
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
@@ -34,7 +36,6 @@ import ButtonIcon from '../../buttonIcon';
 const screenWidth = Dimensions.get('window').width;
 
 interface SampleMipProps {
-  nextStep(): void;
   prevStep(): void;
   sampleData: ISampleData;
   pests: IPest[];
@@ -76,7 +77,6 @@ interface INaturalPredator {
 }
 
 const Revision: React.FC<SampleMipProps> = ({
-  nextStep,
   prevStep,
   sampleData,
   pests,
@@ -86,10 +86,7 @@ const Revision: React.FC<SampleMipProps> = ({
   const [flagPest, setFlagPest] = useState(true);
   const [flagPestDiseases, setFlagPestDiseases] = useState(false);
   const [flagNaturalPredator, setFlagNaturalPredator] = useState(false);
-
-  const next = useCallback(() => {
-    nextStep();
-  }, [nextStep]);
+  const navigation = useNavigation();
 
   const prev = useCallback(() => {
     prevStep();
@@ -110,7 +107,7 @@ const Revision: React.FC<SampleMipProps> = ({
   return (
     <KeyboardAwareScrollView>
       <View>
-        <Header onPressCancel={() => console.log('cancelar')}>Revisão</Header>
+        <Header>Revisão</Header>
         <Container>
           <Card title="Dados da Amostragem">
             <DateOperation>
@@ -412,7 +409,9 @@ const Revision: React.FC<SampleMipProps> = ({
             <ButtonText
               size="small"
               color="green"
-              onPress={next}
+              onPress={() => {
+                navigation.goBack();
+              }}
               style={{ marginLeft: 4 }}
             >
               Salvar

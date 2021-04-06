@@ -52,9 +52,7 @@ const InsetData: React.FC<OperationDataProps> = ({
   return (
     <KeyboardAwareScrollView>
       <View>
-        <Header onPressCancel={() => console.log('cancelar')}>
-          Novo Produto
-        </Header>
+        <Header>Novo Produto</Header>
         <Container>
           <Cards>
             <Card title="Dosagem do Produto (Unidade/ha)">
@@ -64,6 +62,7 @@ const InsetData: React.FC<OperationDataProps> = ({
                 }}
                 value={product.dose}
                 keyboardType="numeric"
+                placeholder="0,0"
               />
             </Card>
 
@@ -74,6 +73,7 @@ const InsetData: React.FC<OperationDataProps> = ({
                 }}
                 value={product.productPrice}
                 keyboardType="numeric"
+                placeholder="0,0"
               />
             </Card>
           </Cards>

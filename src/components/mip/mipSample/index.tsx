@@ -71,9 +71,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
 
   return (
     <ScrollView>
-      <Header onPressCancel={() => console.log('Button Cancel')}>
-        Dados da Amostragem
-      </Header>
+      <Header>Dados da Amostragem</Header>
       <Container>
         <Card title="Selecione a date da coleta">
           <CalendarContainer onPress={showMode} date={sampleData.sampleDate} />

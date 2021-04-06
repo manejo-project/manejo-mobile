@@ -1,11 +1,12 @@
 import React from 'react';
+import FormPulverization from '../../components/pulverization/formPulverization';
 
-import { Container, Title } from './styles';
+import { Container } from './styles';
 
 const Pulverization: React.FC = () => {
   return (
     <Container>
-      <Title>Pulverization</Title>
+      <FormPulverization />
     </Container>
   );
 };

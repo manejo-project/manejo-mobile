@@ -145,13 +145,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
 
   return (
     <>
-      <Header
-        onPressCancel={() => {
-          console.log('Button Cancel');
-        }}
-      >
-        Doenças das Pragas
-      </Header>
+      <Header>Doenças das Pragas</Header>
       <Container>
         <Card title="Selecione a doença:">
           <SearchInput

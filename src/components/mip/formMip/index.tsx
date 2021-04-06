@@ -114,7 +114,6 @@ const FormMip: React.FC = () => {
           pests={pests}
           pestsDiseases={pestsDiseases}
           naturalsPredator={naturalsPredator}
-          nextStep={nextStep}
           prevStep={prevStep}
         />
       );
