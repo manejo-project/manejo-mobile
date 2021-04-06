@@ -1,9 +1,9 @@
 import React from 'react';
-import { BaseButtonProperties } from 'react-native-gesture-handler';
+import { TouchableOpacityProps } from 'react-native';
 
 import { Container, Icon } from './styles';
 
-interface ButtonProps extends BaseButtonProperties {
+interface ButtonProps extends TouchableOpacityProps {
   icon:
     | 'plus'
     | 'pencil-alt'
@@ -12,6 +12,8 @@ interface ButtonProps extends BaseButtonProperties {
     | 'times'
     | 'notes-medical'
     | 'check'
+    | 'bug'
+    | 'chevron-up'
     | 'chevron-down';
   color: 'red' | 'yellow' | 'green' | 'gray' | 'white';
   colorIcon: 'blue' | 'white' | 'gray' | 'black';
