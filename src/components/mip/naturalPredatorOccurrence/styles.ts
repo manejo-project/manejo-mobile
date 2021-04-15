@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { FlatList } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import { INaturalPredator } from '.';
 
 export const Container = styled.View`
@@ -9,7 +9,7 @@ export const Container = styled.View`
 export const PestList = styled(
   FlatList as new () => FlatList<INaturalPredator>,
 )`
-  height: 340px;
+  height: ${Dimensions.get('window').height * 0.38}px;
 `;
 export const ItemListLabel = styled.View``;
 
@@ -26,12 +26,12 @@ export const ItemList = styled.View`
 `;
 
 export const ItemListImage = styled.Image`
-  flex: 1;
+  flex: 4;
   height: 100px;
 `;
 
 export const ItemListContainer = styled.View`
-  flex: 1;
+  flex: 6;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -44,7 +44,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
   onChangeHandlerSampleData,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedZeroValue, setSelectedZeroValue] = useState(false);
+  const [selectedZeroValue, setSelectedZeroValue] = useState(true);
   const [selectedOneValue, setSelectedOneValue] = useState(false);
   const [selectedFiveValue, setSelectedFiveValue] = useState(false);
   const [selectedAnotherValue, setSelectedAnotherValue] = useState(false);
@@ -154,7 +154,12 @@ const MipSample: React.FC<MipSampleDataProps> = ({
             </AnotherValue>
           </Buttons>
         </Card>
-        <ButtonText size="large" color="green" onPress={next}>
+        <ButtonText
+          size="large"
+          color="green"
+          onPress={next}
+          disable={!sampleData.desfolha}
+        >
           Próximo
         </ButtonText>
         <Modal
@@ -179,8 +184,16 @@ const MipSample: React.FC<MipSampleDataProps> = ({
                   value={valueDesfolha}
                   onFocus={() => setValueDesfolha('')}
                   onChangeText={value => {
-                    setValueDesfolha(value);
-                    onChangeHandlerSampleData('desfolha', value);
+                    if (Number.isNaN(value)) {
+                      setValueDesfolha('0');
+                      onChangeHandlerSampleData('desfolha', '0');
+                    } else if (Number(value) > 20) {
+                      setValueDesfolha('20');
+                      onChangeHandlerSampleData('desfolha', '20');
+                    } else {
+                      setValueDesfolha(value);
+                      onChangeHandlerSampleData('desfolha', value);
+                    }
                   }}
                 />
               </Card>
@@ -201,7 +214,10 @@ const MipSample: React.FC<MipSampleDataProps> = ({
                   color="green"
                   colorIcon="white"
                   icon="check"
-                  onPress={toggleModal}
+                  onPress={() => {
+                    toggleModal();
+                    onChangeHandlerSampleData('desfolha', valueDesfolha);
+                  }}
                 />
               </ModalButton>
             </ModalView>

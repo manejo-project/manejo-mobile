@@ -23,17 +23,11 @@ export const HeaderList = styled.View`
   width: 100%;
   padding-top: 6px;
   padding-bottom: 6px;
-  /* justify-content: space-around;
-  padding-right: 10px;
-  padding-left: 15px;
-  padding-top: 10px; */
 `;
 
 export const ItemListTextTable = styled.Text`
   font-family: 'RobotoSlab-Medium';
   font-size: 16px;
-  /* align-self: center;
-  justify-content: center; */
 `;
 export const Lines = styled.View`
   flex-direction: row;
@@ -56,12 +50,12 @@ export const LineTable = styled.View<IBackgroundList>`
 `;
 
 export const ItemListImage = styled.Image`
-  flex: 1;
+  flex: 4;
   height: 100px;
 `;
 
 export const ItemListContainer = styled.View`
-  flex: 1;
+  flex: 6;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

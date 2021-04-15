@@ -118,6 +118,7 @@ const InsetData: React.FC<OperationDataProps> = ({
               color="green"
               onPress={() => setModalVisible(true)}
               style={{ marginLeft: 4 }}
+              disable={!product.dose || !product.productPrice}
             >
               Próximo
             </ButtonText>

@@ -13,7 +13,7 @@ export const Container = styled.View`
 
 export const HeaderText = styled.Text`
   font-family: 'RobotoSlab-Medium';
-  font-size: 25px;
+  font-size: 26px;
   color: #ffffff;
   padding: 4px 8px;
   max-width: 250px;

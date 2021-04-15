@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Modal } from 'react-native';
+import { View, Modal, Dimensions } from 'react-native';
 import ButtonIcon from '../../buttonIcon';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
@@ -178,7 +178,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
                         colorIcon="white"
                         size="small"
                         onPress={() => {
-                          console.log('remove');
+                          console.log(Dimensions.get('window').height);
                         }}
                       />
                     </View>

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/native';
-import { FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { Class } from '.';
 
 interface ItemListProps {
@@ -11,7 +11,7 @@ export const Container = styled.View`
 `;
 
 export const ClassList = styled(FlatList as new () => FlatList<Class>)`
-  height: 340px;
+  height: ${Dimensions.get('window').height * 0.38}px;
 `;
 
 export const ItemList = styled(TouchableOpacity)<ItemListProps>`

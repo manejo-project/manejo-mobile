@@ -144,11 +144,21 @@ const OperationData: React.FC<OperationDataProps> = ({
             )}
           </Card>
           {type === 'update' ? (
-            <ButtonText size="large" color="green" onPress={next}>
+            <ButtonText
+              size="large"
+              color="green"
+              onPress={next}
+              disable={!pulverization.caldaVolume}
+            >
               Próximo
             </ButtonText>
           ) : (
-            <ButtonText size="large" color="green" onPress={next}>
+            <ButtonText
+              size="large"
+              color="green"
+              onPress={next}
+              disable={!pulverization.caldaVolume}
+            >
               Próximo
             </ButtonText>
           )}

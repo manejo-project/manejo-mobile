@@ -13,11 +13,10 @@ export const Container = styled(RectButton)<ContainerProps>`
   justify-content: center;
   align-items: center;
   margin: 8px 0;
-
   ${props => {
     if (props.size === 'large') {
       return css`
-        height: 60px;
+        height: 50px;
       `;
     }
     return css`
