@@ -9,17 +9,19 @@ interface ICard {
   edit?(): void;
   remove?(): void;
   color?: 'white' | 'beige';
+  size?: 'small' | 'large';
 }
 
 const Card: React.FC<ICard> = ({
   title,
   children,
   color = 'white',
+  size = 'small',
   edit,
   remove,
 }) => (
-  <Container>
-    <Header>
+  <Container size={size}>
+    <Header flag={!!remove || !!edit}>
       {remove && (
         <ButtonIcon
           size="small"
@@ -40,7 +42,7 @@ const Card: React.FC<ICard> = ({
           style={{ position: 'absolute', right: 8 }}
         />
       )}
-      <HeaderText>{title}</HeaderText>
+      <HeaderText flag={!!remove}>{title}</HeaderText>
     </Header>
     <Body color={color}>{children}</Body>
   </Container>

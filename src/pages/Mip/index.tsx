@@ -1,7 +1,7 @@
 import React from 'react';
 import FormMip from '../../components/mip/formMip';
 
-import { Container, Title } from './styles';
+import { Container } from './styles';
 
 const Mip: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { Dimensions, FlatList } from 'react-native';
 import { INaturalPredator } from '.';
 
@@ -9,7 +9,22 @@ export const Container = styled.View`
 export const PestList = styled(
   FlatList as new () => FlatList<INaturalPredator>,
 )`
-  height: ${Dimensions.get('window').height * 0.38}px;
+  height: ${Dimensions.get('screen').height * 0.42}px;
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        height: ${height * 0.36}px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        height: ${height * 0.27}px;
+      `;
+    }
+  }}
 `;
 export const ItemListLabel = styled.View``;
 
@@ -40,7 +55,7 @@ export const ItemListText = styled.Text`
   padding-left: 8px;
   font-family: 'RobotoSlab-Medium';
   font-size: 16px;
-  width: 120px;
+  max-width: 120px;
 `;
 
 export const ModalCenteredView = styled.View`

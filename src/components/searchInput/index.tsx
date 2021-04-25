@@ -21,7 +21,7 @@ const SearchInput: React.FC<TextInputProps> = ({ ...rest }) => {
         onBlur={handleInputBlur}
         {...rest}
       />
-      <Icon name="search" size={20} color="#BEBCCC" />
+      <Icon name="search" size={20} color="#BEBCCC" isFocused={isFocused} />
     </Container>
   );
 };

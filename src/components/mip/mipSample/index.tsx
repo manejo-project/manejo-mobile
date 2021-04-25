@@ -35,6 +35,7 @@ interface MipSampleDataProps {
     growthPhase: string;
     desfolha: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChangeHandlerSampleData(input: string, value: any): void;
 }
 
@@ -88,6 +89,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
           <PickerContainer>
             <Picker
               selectedValue={sampleData.growthPhase}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onValueChange={(itemValue, itemIndex) =>
                 onChangeHandlerSampleData('growthPhase', itemValue)
               }

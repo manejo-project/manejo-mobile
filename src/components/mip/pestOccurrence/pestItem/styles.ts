@@ -60,9 +60,10 @@ export const ItemListContainer = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
+
 export const ItemListText = styled.Text`
   padding-left: 8px;
   font-family: 'RobotoSlab-Medium';
   font-size: 16px;
-  width: 120px;
+  max-width: 120px;
 `;

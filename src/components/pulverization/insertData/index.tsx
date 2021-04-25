@@ -1,6 +1,6 @@
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import React, { useCallback, useState } from 'react';
-import { View, Alert, Modal, StyleSheet, Text, Pressable } from 'react-native';
+import { View, Alert, Modal } from 'react-native';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
@@ -33,6 +33,7 @@ interface OperationDataProps {
     dose: string;
     productPrice: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChangeHandlerProduct(input: string, value: any): void;
 }
 

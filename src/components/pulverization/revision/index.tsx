@@ -134,6 +134,7 @@ const Revision: React.FC<Props> = ({
                   key={product.name}
                   color="beige"
                   title={product.name}
+                  // eslint-disable-next-line no-console
                   remove={() => console.log('remover')}
                 >
                   <TargetContainer>

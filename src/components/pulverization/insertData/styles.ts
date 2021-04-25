@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Dimensions, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 export const Container = styled.View`
   padding: 0 16px;
@@ -11,7 +11,6 @@ export const Buttons = styled.View`
 `;
 
 export const Cards = styled.View`
-  height: ${Dimensions.get('window').height * 0.65}px;
   align-items: center;
   justify-content: center;
 `;

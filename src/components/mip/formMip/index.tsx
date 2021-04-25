@@ -62,6 +62,7 @@ const FormMip: React.FC = () => {
   }, [step]);
 
   const onChangeHandlerSampleData = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (input: string, value: any) => {
       setSampleData({
         ...sampleData,
