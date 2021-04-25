@@ -60,25 +60,29 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
       const data = [
         {
           id: '1',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta com Baculovirus',
           average: '',
         },
         {
           id: '2',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta com Nomuraea',
           average: '',
         },
         {
           id: '3',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta da Soja',
           average: '',
         },
         {
           id: '4',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta',
           average: '',
         },
@@ -179,6 +183,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
                         colorIcon="white"
                         size="small"
                         onPress={() => {
+                          // eslint-disable-next-line no-console
                           console.log('remove');
                         }}
                       />

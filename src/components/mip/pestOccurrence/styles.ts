@@ -7,7 +7,22 @@ export const Container = styled.View`
 `;
 
 export const PestList = styled(FlatList as new () => FlatList<IPest>)`
-  height: ${Dimensions.get('window').height * 0.38}px;
+  height: ${Dimensions.get('screen').height * 0.42}px;
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        height: ${height * 0.36}px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        height: ${height * 0.27}px;
+      `;
+    }
+  }}
 `;
 
 interface IButton {
@@ -18,7 +33,6 @@ export const ModalCenteredView = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  margin-top: 22px;
   padding: 0 16px;
   background-color: rgba(0, 0, 0, 0.7);
 `;
@@ -37,20 +51,64 @@ export const ModalHeader = styled.View`
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        height: 50px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        height: 40px;
+      `;
+    }
+  }}
 `;
 
 export const ModalHeaderText = styled.Text`
   color: white;
   font-size: 30px;
   font-family: 'RobotoSlab-Medium';
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        font-size: 26px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        font-size: 22px;
+      `;
+    }
+  }}
 `;
 
 export const ModalButton = styled.View`
   width: 85%;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 30px 0;
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        padding: 4px 0;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        padding: 4px 0;
+      `;
+    }
+  }}
 `;
 
 export const ItemListPestSize = styled(TouchableOpacity)<IButton>`
@@ -74,12 +132,42 @@ export const ItemListPestSize = styled(TouchableOpacity)<IButton>`
       background-color: #ecf0f5;
     `;
   }}
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        height: 36px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        height: 32px;
+      `;
+    }
+  }}
 `;
 
 export const ItemListTextPestSize = styled.Text`
   color: #000;
   font-size: 24px;
   font-family: 'RobotoSlab-Medium';
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        font-size: 20px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        font-size: 16px;
+      `;
+    }
+  }}
 `;
 
 export const Buttons = styled.View`

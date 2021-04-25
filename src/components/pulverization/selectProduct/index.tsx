@@ -17,6 +17,7 @@ interface PickerProps {
     dose: string;
     productPrice: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChangeHandlerProduct(input: string, value: any): void;
 }
 

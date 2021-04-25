@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
+import { Dimensions } from 'react-native';
 
 interface ContainerProps {
   color: 'red' | 'yellow' | 'green' | 'gray';
@@ -14,13 +15,37 @@ export const Container = styled(RectButton)<ContainerProps>`
   align-items: center;
   margin: 8px 0;
   ${props => {
+    const { height } = Dimensions.get('screen');
+
     if (props.size === 'large') {
+      if (height > 450 && height <= 550) {
+        return css`
+          height: 46px;
+        `;
+      }
+      if (Dimensions.get('window').height <= 450) {
+        return css`
+          height: 42px;
+        `;
+      }
+
       return css`
         height: 50px;
       `;
     }
+    if (height > 450 && height <= 550) {
+      return css`
+        height: 41px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        height: 37px;
+      `;
+    }
+
     return css`
-      height: 50px;
+      height: 45px;
     `;
   }}
 
@@ -53,4 +78,19 @@ export const Text = styled.Text`
   font-family: 'RobotoSlab-Bold';
   font-size: 25px;
   color: #ffffff;
+
+  ${() => {
+    const { height } = Dimensions.get('screen');
+
+    if (height > 450 && height <= 550) {
+      return css`
+        font-size: 21px;
+      `;
+    }
+    if (Dimensions.get('window').height <= 450) {
+      return css`
+        font-size: 17px;
+      `;
+    }
+  }}
 `;

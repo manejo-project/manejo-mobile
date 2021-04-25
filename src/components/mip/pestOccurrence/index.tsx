@@ -70,28 +70,32 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
         {
           id: '1',
           type: 'lagarta',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta da Soja',
           occurrence: [],
         },
         {
           id: '2',
           type: 'lagarta',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta',
           occurrence: [],
         },
         {
           id: '3',
           type: 'lagarta',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Lagarta da Soja3',
           occurrence: [],
         },
         {
           id: '4',
           type: 'percevejo',
-          image: 'https://i.ibb.co/CzSNr8z/soja.jpg',
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chenille_de_Grand_porte_queue_%28macaon%29.jpg/1024px-Chenille_de_Grand_porte_queue_%28macaon%29.jpg',
           name: 'Percevejo',
           occurrence: [],
         },
