@@ -72,8 +72,8 @@ const FormPulverization: React.FC = () => {
       classe: '',
       name: '',
       target: '',
-      dose: '0,0',
-      productPrice: '0,0',
+      dose: '',
+      productPrice: '',
     });
   }, [product, products]);
 

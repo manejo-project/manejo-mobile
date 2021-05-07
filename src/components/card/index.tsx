@@ -29,7 +29,7 @@ const Card: React.FC<ICard> = ({
           color="red"
           colorIcon="white"
           onPress={remove}
-          style={{ position: 'absolute', right: 8 }}
+          style={{ position: 'absolute', right: 8, zIndex: 100 }}
         />
       )}
       {edit && (
@@ -39,7 +39,7 @@ const Card: React.FC<ICard> = ({
           color="yellow"
           colorIcon="blue"
           onPress={edit}
-          style={{ position: 'absolute', right: 8 }}
+          style={{ position: 'absolute', right: 8, zIndex: 100 }}
         />
       )}
       <HeaderText flag={!!remove}>{title}</HeaderText>
