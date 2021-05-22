@@ -89,6 +89,10 @@ const SelectClass: React.FC<PickerProps> = ({
             keyExtractor={classItem => classItem.name}
             renderItem={({ item: classItem }) => (
               <ItemList
+                testID={`selectClass-itemList-${classItem.name.replace(
+                  /\s/g,
+                  '',
+                )}`}
                 onPress={() => next(classItem.name)}
                 selected={classItem.name === product.classe}
               >
@@ -103,7 +107,12 @@ const SelectClass: React.FC<PickerProps> = ({
             Cancelar novo produto
           </ButtonText>
         ) : (
-          <ButtonText size="large" color="yellow" onPress={prev}>
+          <ButtonText
+            size="large"
+            color="yellow"
+            onPress={prev}
+            testID="selectClass-button-prev"
+          >
             Anterior
           </ButtonText>
         )}

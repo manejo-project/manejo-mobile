@@ -76,7 +76,7 @@ const OperationData: React.FC<OperationDataProps> = ({
             />
             {show && (
               <Calendar
-                testID="dateTimePicker"
+                testID="operationData-dateTimePicker"
                 value={pulverization.sampleDate}
                 display="default"
                 onChange={onChange}
@@ -86,6 +86,7 @@ const OperationData: React.FC<OperationDataProps> = ({
           <Card title="Selecione o estádio da cultura">
             <PickerContainer>
               <Picker
+                testID="operationData-growthPhasePicker"
                 selectedValue={pulverization.growthPhase}
                 onValueChange={(itemValue, itemIndex) =>
                   onChangeHandlerPulverization('growthPhase', itemValue)
@@ -101,6 +102,7 @@ const OperationData: React.FC<OperationDataProps> = ({
           </Card>
           <Card title="Volume de calda (l/ha)">
             <Input
+              testID="operationData-caldaVolumeInput"
               onChangeText={value => {
                 onChangeHandlerPulverization('caldaVolume', value);
               }}
@@ -112,6 +114,7 @@ const OperationData: React.FC<OperationDataProps> = ({
           <Card title="Pulverização Parcial?">
             <Buttons>
               <No
+                testID="operationData-noButton"
                 onPress={() => {
                   onChangeHandlerPulverization('selected', false);
                 }}
@@ -120,6 +123,7 @@ const OperationData: React.FC<OperationDataProps> = ({
                 <NoText>Não</NoText>
               </No>
               <Yes
+                testID="operationData-yesButton"
                 onPress={() => {
                   onChangeHandlerPulverization('selected', true);
                 }}
@@ -136,7 +140,7 @@ const OperationData: React.FC<OperationDataProps> = ({
             )}
             {showPartial && (
               <Calendar
-                testID="datePartialTimePicker"
+                testID="operationData-datePartialTimePicker"
                 value={pulverization.datePartial}
                 display="default"
                 onChange={onChangePartial}
@@ -145,6 +149,7 @@ const OperationData: React.FC<OperationDataProps> = ({
           </Card>
           {type === 'update' ? (
             <ButtonText
+              testID="operationData-nextButton-update"
               size="large"
               color="green"
               onPress={next}
@@ -154,6 +159,7 @@ const OperationData: React.FC<OperationDataProps> = ({
             </ButtonText>
           ) : (
             <ButtonText
+              testID="operationData-nextButton-create"
               size="large"
               color="green"
               onPress={next}

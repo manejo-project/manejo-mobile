@@ -13,7 +13,7 @@ interface ICalendarProps extends BaseButtonProperties {
 
 const CalendarContainer: React.FC<ICalendarProps> = ({ date, onPress }) => {
   return (
-    <Container onPress={onPress}>
+    <Container testID="calendar-container" onPress={onPress}>
       <TextDate>
         {date.getDate()} / {date.getMonth() + 1} / {date.getFullYear()}
       </TextDate>

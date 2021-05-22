@@ -20,10 +20,11 @@ const Card: React.FC<ICard> = ({
   edit,
   remove,
 }) => (
-  <Container size={size}>
+  <Container testID="card" size={size}>
     <Header flag={!!remove || !!edit}>
       {remove && (
         <ButtonIcon
+          testID="card-remove"
           size="small"
           icon="trash"
           color="red"
@@ -34,6 +35,7 @@ const Card: React.FC<ICard> = ({
       )}
       {edit && (
         <ButtonIcon
+          testID="card-edit"
           size="small"
           icon="pencil-alt"
           color="yellow"

@@ -7,7 +7,7 @@ interface PickerProps {
 }
 
 const PickerContainer: React.FC<PickerProps> = ({ children }) => {
-  return <Container>{children}</Container>;
+  return <Container testID="picker-container">{children}</Container>;
 };
 
 export default PickerContainer;

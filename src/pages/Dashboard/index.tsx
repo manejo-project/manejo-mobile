@@ -18,6 +18,7 @@ const Dashboard: React.FC = () => {
         Mip
       </ButtonText>
       <ButtonText
+        testID="teste"
         color="green"
         size="large"
         onPress={() => {

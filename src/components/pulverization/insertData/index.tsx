@@ -1,6 +1,6 @@
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import React, { useCallback, useState } from 'react';
-import { View, Alert, Modal } from 'react-native';
+import { View, Modal } from 'react-native';
 import ButtonText from '../../buttonText';
 import Card from '../../card';
 import Header from '../../header';
@@ -52,12 +52,13 @@ const InsetData: React.FC<OperationDataProps> = ({
 
   return (
     <KeyboardAwareScrollView>
-      <View>
+      <View testID="insert-data">
         <Header>Novo Produto</Header>
         <Container>
           <Cards>
             <Card title="Dosagem do Produto (Unidade/ha)">
               <Input
+                testID="insertData-doseInput"
                 onChangeText={value => {
                   onChangeHandlerProduct('dose', value);
                 }}
@@ -69,6 +70,7 @@ const InsetData: React.FC<OperationDataProps> = ({
 
             <Card title="Preço do produto (R$/Unidade)">
               <Input
+                testID="insertData-productPriceInput"
                 onChangeText={value => {
                   onChangeHandlerProduct('productPrice', value);
                 }}
@@ -79,13 +81,10 @@ const InsetData: React.FC<OperationDataProps> = ({
             </Card>
           </Cards>
           <Modal
+            testID="modal"
             animationType="fade"
             visible={modalVisible}
             transparent
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}
           >
             <CenteredView>
               <ModalView>
@@ -94,10 +93,10 @@ const InsetData: React.FC<OperationDataProps> = ({
                 </HeaderView>
                 <BodyView>
                   <ButtonsYesNo>
-                    <No onPress={nextNo}>
+                    <No onPress={nextNo} testID="insertData-noButton">
                       <NoText>Não</NoText>
                     </No>
-                    <Yes onPress={nextYes}>
+                    <Yes onPress={nextYes} testID="insertData-yesButton">
                       <YesText>Sim</YesText>
                     </Yes>
                   </ButtonsYesNo>
@@ -107,6 +106,7 @@ const InsetData: React.FC<OperationDataProps> = ({
           </Modal>
           <Buttons>
             <ButtonText
+              testID="button-prev"
               size="small"
               color="yellow"
               onPress={prev}
@@ -115,6 +115,7 @@ const InsetData: React.FC<OperationDataProps> = ({
               Anterior
             </ButtonText>
             <ButtonText
+              testID="insertData-nextButton"
               size="small"
               color="green"
               onPress={() => setModalVisible(true)}

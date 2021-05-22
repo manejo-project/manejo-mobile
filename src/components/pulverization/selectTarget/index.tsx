@@ -113,6 +113,10 @@ const SelectTarget: React.FC<PickerProps> = ({
             keyExtractor={targetItem => targetItem.name}
             renderItem={({ item: targetItem }) => (
               <ItemList
+                testID={`selectTarget-itemList-${targetItem.name.replace(
+                  /\s/g,
+                  '',
+                )}`}
                 onPress={() => next(targetItem.name)}
                 selected={targetItem.name === product.target}
               >
@@ -122,7 +126,12 @@ const SelectTarget: React.FC<PickerProps> = ({
           />
         </Card>
 
-        <ButtonText size="large" color="yellow" onPress={prev}>
+        <ButtonText
+          size="large"
+          color="yellow"
+          onPress={prev}
+          testID="selectTarget-button-prev"
+        >
           Anterior
         </ButtonText>
       </Container>

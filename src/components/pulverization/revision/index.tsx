@@ -71,13 +71,13 @@ const Revision: React.FC<Props> = ({
   const navigation = useNavigation();
   return (
     <KeyboardAwareScrollView>
-      <View>
+      <View testID="revision">
         <Header>Revisão</Header>
         <Container>
           <Card title="Operação" edit={edit}>
             <DateOperation>
               <ImageDateOperation source={iconCalendar} />
-              <TextDateOperation>
+              <TextDateOperation testID="revision-sampleDate">
                 {pulverization.sampleDate.getDate()} /{' '}
                 {pulverization.sampleDate.getMonth() + 1} /{' '}
                 {pulverization.sampleDate.getFullYear()}
@@ -86,12 +86,16 @@ const Revision: React.FC<Props> = ({
             <Data>
               <CultureStage>
                 <ImageCultureStage source={leaf} />
-                <CultureStageText>{pulverization.growthPhase}</CultureStageText>
+                <CultureStageText testID="revision-growthPhase">
+                  {pulverization.growthPhase}
+                </CultureStageText>
                 <LabelCultureStage>Cultura</LabelCultureStage>
               </CultureStage>
               <Volume>
                 <ImageVolume source={drop} />
-                <VolumeText>{pulverization.caldaVolume}</VolumeText>
+                <VolumeText testID="revision-volume">
+                  {pulverization.caldaVolume}
+                </VolumeText>
                 <LabelVolume>Volume de Calda (l/ha)</LabelVolume>
               </Volume>
             </Data>
@@ -105,7 +109,7 @@ const Revision: React.FC<Props> = ({
                   }}
                 >
                   <ImageDatePartial source={iconCalendar} />
-                  <TextDatePartial>
+                  <TextDatePartial testID="revision-datePartial">
                     {pulverization.datePartial.getDate()} /{' '}
                     {pulverization.datePartial.getMonth() + 1} /{' '}
                     {pulverization.datePartial.getFullYear()}
@@ -117,6 +121,7 @@ const Revision: React.FC<Props> = ({
           </Card>
           <Card title="Produtos Usados">
             <ButtonText
+              testID="revision-newProductButton"
               size="small"
               color="green"
               onPress={newProduct}
