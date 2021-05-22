@@ -112,7 +112,7 @@ const Revision: React.FC<SampleMipProps> = ({
           <Card title="Dados da Amostragem">
             <DateOperation>
               <ImageDateOperation source={iconCalendar} />
-              <TextDateOperation>
+              <TextDateOperation testID="revision-sampleDate">
                 {sampleData.sampleDate.getDate()} /{' '}
                 {sampleData.sampleDate.getMonth() + 1} /{' '}
                 {sampleData.sampleDate.getFullYear()}
@@ -121,7 +121,9 @@ const Revision: React.FC<SampleMipProps> = ({
             <Data>
               <CultureStage>
                 <ImageCultureStage source={leaf} />
-                <CultureStageText>{sampleData.growthPhase}</CultureStageText>
+                <CultureStageText testID="revision-growthPhase">
+                  {sampleData.growthPhase}
+                </CultureStageText>
                 <LabelCultureStage>Cultura</LabelCultureStage>
               </CultureStage>
               <Desfolha>
@@ -134,7 +136,9 @@ const Revision: React.FC<SampleMipProps> = ({
                   chartConfig={chartConfig}
                   hideLegend
                 />
-                <DesfolhaText>{sampleData.desfolha}%</DesfolhaText>
+                <DesfolhaText testID="revision-desfolha">
+                  {sampleData.desfolha}%
+                </DesfolhaText>
                 <LabelDesfolha>Desfolha</LabelDesfolha>
               </Desfolha>
             </Data>
@@ -142,6 +146,7 @@ const Revision: React.FC<SampleMipProps> = ({
           <Card title="Ocorrências">
             <ButtonsHeader>
               <ButtonIcon
+                testID="revision-flagPestButton"
                 icon="bug"
                 colorIcon="black"
                 size="large"
@@ -153,6 +158,7 @@ const Revision: React.FC<SampleMipProps> = ({
                 }}
               />
               <ButtonIcon
+                testID="revision-flagPestDiseasesButton"
                 icon="notes-medical"
                 colorIcon="black"
                 size="large"
@@ -164,6 +170,7 @@ const Revision: React.FC<SampleMipProps> = ({
                 }}
               />
               <ButtonIcon
+                testID="revision-flagNaturalPredatorButton"
                 icon="spider"
                 colorIcon="black"
                 size="large"
@@ -246,7 +253,9 @@ const Revision: React.FC<SampleMipProps> = ({
                                         justifyContent: 'center',
                                       }}
                                     >
-                                      <ItemListTextTable>
+                                      <ItemListTextTable
+                                        testID={`${occurrence.size} revision-pestItemSize`}
+                                      >
                                         {occurrence.size}
                                       </ItemListTextTable>
                                     </View>
@@ -257,7 +266,9 @@ const Revision: React.FC<SampleMipProps> = ({
                                         justifyContent: 'center',
                                       }}
                                     >
-                                      <ItemListTextTable>
+                                      <ItemListTextTable
+                                        testID={`${occurrence.average} revision-pestItemAverage`}
+                                      >
                                         {occurrence.average}
                                       </ItemListTextTable>
                                     </View>
@@ -321,7 +332,7 @@ const Revision: React.FC<SampleMipProps> = ({
                                 justifyContent: 'center',
                               }}
                             >
-                              <ItemListTextTable>
+                              <ItemListTextTable testID="revision-pestDiseaseItemAverage">
                                 {pestDiseases.average}
                               </ItemListTextTable>
                             </View>
@@ -382,7 +393,7 @@ const Revision: React.FC<SampleMipProps> = ({
                                 justifyContent: 'center',
                               }}
                             >
-                              <ItemListTextTable>
+                              <ItemListTextTable testID="revision-naturalPredatorItemAverage">
                                 {naturalPredator.average}
                               </ItemListTextTable>
                             </View>

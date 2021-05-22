@@ -202,14 +202,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
             Próximo
           </ButtonText>
         </Buttons>
-        <Modal
-          animationType="fade"
-          visible={modalVisible}
-          transparent
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
+        <Modal animationType="fade" visible={modalVisible} transparent>
           <ModalCenteredView>
             <ModalView>
               <ModalHeader>
@@ -219,12 +212,14 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                 {pest.type === 'lagarta' && (
                   <>
                     <ItemListPestSize
+                      testID="pestOccurrence-pestItemSizeSmall"
                       flag={pestSize === '< 1,5 cm'}
                       onPress={() => setPestSize('< 1,5 cm')}
                     >
                       <ItemListTextPestSize>&lt; 1,5 cm</ItemListTextPestSize>
                     </ItemListPestSize>
                     <ItemListPestSize
+                      testID="pestOccurrence-pestItemSizeBigger"
                       flag={pestSize === '> 1,5 cm'}
                       onPress={() => setPestSize('> 1,5 cm')}
                     >
@@ -236,6 +231,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                 {pest.type === 'percevejo' && (
                   <>
                     <ItemListPestSize
+                      testID="pestOccurrence-pestItemPercevejoSizeSmall"
                       flag={pestSize === '3º ao 5º instar'}
                       onPress={() => setPestSize('3º ao 5º instar')}
                     >
@@ -244,6 +240,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                       </ItemListTextPestSize>
                     </ItemListPestSize>
                     <ItemListPestSize
+                      testID="pestOccurrence-pestItemPercevejoSizeBigger"
                       flag={pestSize === 'Adultos'}
                       onPress={() => setPestSize('Adultos')}
                     >
@@ -272,6 +269,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                   }}
                 />
                 <ButtonIcon
+                  testID="pestOccurrence-pestItemAverageButtonConfirm"
                   size="large"
                   color="green"
                   colorIcon="white"
