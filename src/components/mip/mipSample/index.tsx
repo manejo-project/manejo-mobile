@@ -78,7 +78,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
           <CalendarContainer onPress={showMode} date={sampleData.sampleDate} />
           {show && (
             <Calendar
-              testID="dateTimePicker"
+              testID="mipSample-sampleDateCalendar"
               value={sampleData.sampleDate}
               display="default"
               onChange={onChange}
@@ -88,6 +88,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
         <Card title="Selecione o estádio da cultura">
           <PickerContainer>
             <Picker
+              testID="mipSample-growthPhasePicker"
               selectedValue={sampleData.growthPhase}
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onValueChange={(itemValue, itemIndex) =>
@@ -105,6 +106,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
         <Card title="% de Desfolha (em números inteiros)">
           <Buttons>
             <ZeroValue
+              testID="mipSample-desfolhaZeroValue"
               onPress={() => {
                 setSelectedZeroValue(true);
                 setSelectedOneValue(false);
@@ -117,6 +119,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
               <ZeroValueText flag={selectedZeroValue}>0%</ZeroValueText>
             </ZeroValue>
             <OneValue
+              testID="mipSample-desfolhaOneValue"
               onPress={() => {
                 setSelectedZeroValue(false);
                 setSelectedOneValue(true);
@@ -129,6 +132,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
               <OneValueText flag={selectedOneValue}>1%</OneValueText>
             </OneValue>
             <FiveValue
+              testID="mipSample-desfolhaFiveValue"
               onPress={() => {
                 setSelectedZeroValue(false);
                 setSelectedOneValue(false);
@@ -141,6 +145,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
               <FiveValueText flag={selectedFiveValue}>5%</FiveValueText>
             </FiveValue>
             <AnotherValue
+              testID="mipSample-desfolhaAnotherValue"
               onPress={() => {
                 setSelectedZeroValue(false);
                 setSelectedOneValue(false);
@@ -164,14 +169,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
         >
           Próximo
         </ButtonText>
-        <Modal
-          animationType="fade"
-          visible={modalVisible}
-          transparent
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
+        <Modal animationType="fade" visible={modalVisible} transparent>
           <ModalCenteredView>
             <ModalView>
               <ModalHeader>
@@ -181,6 +179,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
               </ModalHeader>
               <Card title="Digite o valor:">
                 <Input
+                  testID="mipSample-desfolhaAnotherValueInput"
                   keyboardType="numeric"
                   placeholder="0,00"
                   value={valueDesfolha}
@@ -202,6 +201,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
 
               <ModalButton>
                 <ButtonIcon
+                  testID="mipSample-desfolhaAnotherValueButtonCancel"
                   size="large"
                   color="red"
                   colorIcon="white"
@@ -212,6 +212,7 @@ const MipSample: React.FC<MipSampleDataProps> = ({
                   }}
                 />
                 <ButtonIcon
+                  testID="mipSample-desfolhaAnotherValueButtonConfirm"
                   size="large"
                   color="green"
                   colorIcon="white"

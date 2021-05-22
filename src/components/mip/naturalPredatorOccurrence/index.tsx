@@ -190,6 +190,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
                     </View>
                   ) : (
                     <ButtonIcon
+                      testID="naturalPredatorOccurrence-naturalPredatorItemButtonAdd"
                       icon="plus"
                       color="white"
                       colorIcon="black"
@@ -222,14 +223,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
             Próximo
           </ButtonText>
         </Buttons>
-        <Modal
-          animationType="fade"
-          visible={modalVisible}
-          transparent
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
+        <Modal animationType="fade" visible={modalVisible} transparent>
           <ModalCenteredView>
             <ModalView>
               <ModalHeader>
@@ -249,6 +243,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
 
               <ModalButton>
                 <ButtonIcon
+                  testID="naturalPredatorOccurrence-naturalPredatorItemAverageButtonCancel"
                   size="large"
                   color="red"
                   colorIcon="white"
@@ -258,6 +253,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
                   }}
                 />
                 <ButtonIcon
+                  testID="naturalPredatorOccurrence-naturalPredatorItemAverageButtonConfirm"
                   size="large"
                   color="green"
                   colorIcon="white"

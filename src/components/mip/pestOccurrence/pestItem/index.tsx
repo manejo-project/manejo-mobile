@@ -46,6 +46,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
           <ItemListText> {pest.name} </ItemListText>
           {pest.occurrence.length === 0 ? (
             <ButtonIcon
+              testID={pest.name}
               icon="plus"
               color="white"
               colorIcon="black"
@@ -54,6 +55,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
             />
           ) : open ? (
             <ButtonIcon
+              testID={`${pest.name} ChevronUp`}
               icon="chevron-up"
               color="white"
               colorIcon="black"
@@ -62,6 +64,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
             />
           ) : (
             <ButtonIcon
+              testID={`${pest.name} ChevronDown`}
               icon="chevron-down"
               color="white"
               colorIcon="black"
@@ -157,6 +160,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
           })}
           <View style={{ paddingVertical: 4 }}>
             <ButtonIcon
+              testID={`${pest.name} add other size`}
               icon="plus"
               colorIcon="white"
               color="green"

@@ -14,7 +14,7 @@ const Input: React.FC<TextInputProps> = ({ ...rest }) => {
   }, []);
 
   return (
-    <Container isFocused={isFocused}>
+    <Container testID="input-container" isFocused={isFocused}>
       <TextInput
         placeholderTextColor="#666360"
         onFocus={handleInputFocus}

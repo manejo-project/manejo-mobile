@@ -189,6 +189,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
                     </View>
                   ) : (
                     <ButtonIcon
+                      testID="pestDiseasesOccurrence-pestDiseasesItemButtonAdd"
                       icon="plus"
                       color="white"
                       colorIcon="black"
@@ -221,14 +222,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
             Próximo
           </ButtonText>
         </Buttons>
-        <Modal
-          animationType="fade"
-          visible={modalVisible}
-          transparent
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
+        <Modal animationType="fade" visible={modalVisible} transparent>
           <ModalCenteredView>
             <ModalView>
               <ModalHeader>
@@ -248,6 +242,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
 
               <ModalButton>
                 <ButtonIcon
+                  testID="pestDiseasesOccurrence-pestDiseasesItemAverageButtonCancel"
                   size="large"
                   color="red"
                   colorIcon="white"
@@ -257,6 +252,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
                   }}
                 />
                 <ButtonIcon
+                  testID="pestDiseasesOccurrence-pestDiseasesItemAverageButtonConfirm"
                   size="large"
                   color="green"
                   colorIcon="white"
