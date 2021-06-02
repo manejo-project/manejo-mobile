@@ -164,12 +164,17 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
     [setFilterList, pests],
   );
 
+  function testProps(id: string) {
+    return { testID: id, accessibilityLabel: id };
+  }
+
   return (
     <>
       <Header>Flutuação das Pragas</Header>
       <Container>
         <Card title="Selecione a praga:">
           <SearchInput
+            {...testProps('pestOccurrence-pestSearchInput')}
             placeholder="Buscar por Praga"
             value={filter}
             onChangeText={value => {
@@ -194,6 +199,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
             Anterior
           </ButtonText>
           <ButtonText
+            {...testProps('pestOccurrence-nextButton')}
             size="small"
             color="green"
             onPress={next}
@@ -212,14 +218,14 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                 {pest.type === 'lagarta' && (
                   <>
                     <ItemListPestSize
-                      testID="pestOccurrence-pestItemSizeSmall"
+                      {...testProps('pestOccurrence-pestItemSizeSmall')}
                       flag={pestSize === '< 1,5 cm'}
                       onPress={() => setPestSize('< 1,5 cm')}
                     >
                       <ItemListTextPestSize>&lt; 1,5 cm</ItemListTextPestSize>
                     </ItemListPestSize>
                     <ItemListPestSize
-                      testID="pestOccurrence-pestItemSizeBigger"
+                      {...testProps('pestOccurrence-pestItemSizeBigger')}
                       flag={pestSize === '> 1,5 cm'}
                       onPress={() => setPestSize('> 1,5 cm')}
                     >
@@ -231,7 +237,9 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                 {pest.type === 'percevejo' && (
                   <>
                     <ItemListPestSize
-                      testID="pestOccurrence-pestItemPercevejoSizeSmall"
+                      {...testProps(
+                        'pestOccurrence-pestItemPercevejoSizeSmall',
+                      )}
                       flag={pestSize === '3º ao 5º instar'}
                       onPress={() => setPestSize('3º ao 5º instar')}
                     >
@@ -240,7 +248,9 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                       </ItemListTextPestSize>
                     </ItemListPestSize>
                     <ItemListPestSize
-                      testID="pestOccurrence-pestItemPercevejoSizeBigger"
+                      {...testProps(
+                        'pestOccurrence-pestItemPercevejoSizeBigger',
+                      )}
                       flag={pestSize === 'Adultos'}
                       onPress={() => setPestSize('Adultos')}
                     >
@@ -251,6 +261,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
               </Card>
               <Card title="Digite a média encontrada:">
                 <Input
+                  {...testProps('pestOccurrence-pestItemAverageInput')}
                   placeholder="0,00"
                   onChangeText={value => setPestAverage(value)}
                   value={pestAverage}
@@ -269,7 +280,7 @@ const PestOccurrence: React.FC<PestOccurrenceDataProps> = ({
                   }}
                 />
                 <ButtonIcon
-                  testID="pestOccurrence-pestItemAverageButtonConfirm"
+                  {...testProps('pestOccurrence-pestItemAverageButtonConfirm')}
                   size="large"
                   color="green"
                   colorIcon="white"

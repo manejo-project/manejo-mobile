@@ -148,12 +148,19 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
     [setFilterList, naturalsPredator],
   );
 
+  function testProps(id: string) {
+    return { testID: id, accessibilityLabel: id };
+  }
+
   return (
     <>
       <Header>Inimigos Naturais</Header>
       <Container>
         <Card title="Selecione o inimigo:">
           <SearchInput
+            {...testProps(
+              'naturalPredatorOccurrence-naturalPredatorSearchInput',
+            )}
             placeholder="Buscar por Inimigo Natural"
             value={filter}
             onChangeText={value => {
@@ -190,7 +197,9 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
                     </View>
                   ) : (
                     <ButtonIcon
-                      testID="naturalPredatorOccurrence-naturalPredatorItemButtonAdd"
+                      {...testProps(
+                        'naturalPredatorOccurrence-naturalPredatorItemButtonAdd',
+                      )}
                       icon="plus"
                       color="white"
                       colorIcon="black"
@@ -219,6 +228,7 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
             color="green"
             onPress={next}
             style={{ marginLeft: 4 }}
+            {...testProps('naturalPredatorOccurrence-nextButton')}
           >
             Próximo
           </ButtonText>
@@ -232,6 +242,9 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
 
               <Card title="Digite a média encontrada:">
                 <Input
+                  {...testProps(
+                    'naturalPredatorOccurrence-naturalPredatorItemAverageInput',
+                  )}
                   placeholder="0,00"
                   onChangeText={value => {
                     setAverage(value);
@@ -253,7 +266,9 @@ const NaturalPredatorOccurrence: React.FC<NaturalPredatorDataProps> = ({
                   }}
                 />
                 <ButtonIcon
-                  testID="naturalPredatorOccurrence-naturalPredatorItemAverageButtonConfirm"
+                  {...testProps(
+                    'naturalPredatorOccurrence-naturalPredatorItemAverageButtonConfirm',
+                  )}
                   size="large"
                   color="green"
                   colorIcon="white"

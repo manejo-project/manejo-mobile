@@ -104,6 +104,10 @@ const Revision: React.FC<SampleMipProps> = ({
     data: [Number(sampleData.desfolha) / 20],
   };
 
+  function testProps(id: string) {
+    return { testID: id, accessibilityLabel: id };
+  }
+
   return (
     <KeyboardAwareScrollView>
       <View>
@@ -121,7 +125,7 @@ const Revision: React.FC<SampleMipProps> = ({
             <Data>
               <CultureStage>
                 <ImageCultureStage source={leaf} />
-                <CultureStageText testID="revision-growthPhase">
+                <CultureStageText {...testProps('revision-growthPhase')}>
                   {sampleData.growthPhase}
                 </CultureStageText>
                 <LabelCultureStage>Cultura</LabelCultureStage>
@@ -136,7 +140,7 @@ const Revision: React.FC<SampleMipProps> = ({
                   chartConfig={chartConfig}
                   hideLegend
                 />
-                <DesfolhaText testID="revision-desfolha">
+                <DesfolhaText {...testProps('revision-desfolha')}>
                   {sampleData.desfolha}%
                 </DesfolhaText>
                 <LabelDesfolha>Desfolha</LabelDesfolha>
@@ -146,7 +150,7 @@ const Revision: React.FC<SampleMipProps> = ({
           <Card title="Ocorrências">
             <ButtonsHeader>
               <ButtonIcon
-                testID="revision-flagPestButton"
+                {...testProps('revision-flagPestButton')}
                 icon="bug"
                 colorIcon="black"
                 size="large"
@@ -158,7 +162,7 @@ const Revision: React.FC<SampleMipProps> = ({
                 }}
               />
               <ButtonIcon
-                testID="revision-flagPestDiseasesButton"
+                {...testProps('revision-flagPestDiseasesButton')}
                 icon="notes-medical"
                 colorIcon="black"
                 size="large"
@@ -170,7 +174,7 @@ const Revision: React.FC<SampleMipProps> = ({
                 }}
               />
               <ButtonIcon
-                testID="revision-flagNaturalPredatorButton"
+                {...testProps('revision-flagNaturalPredatorButton')}
                 icon="spider"
                 colorIcon="black"
                 size="large"
@@ -225,7 +229,11 @@ const Revision: React.FC<SampleMipProps> = ({
                 </Lines>
                 {pests.map(pest => {
                   return (
-                    <View key={pest.id} style={{ flex: 1 }}>
+                    <View
+                      {...testProps('revision-pestOccurrence')}
+                      key={pest.id}
+                      style={{ flex: 1 }}
+                    >
                       {pest.occurrence.length !== 0 && (
                         <>
                           <HeaderList>
@@ -243,6 +251,9 @@ const Revision: React.FC<SampleMipProps> = ({
                               {pest.occurrence.map(occurrence => {
                                 return (
                                   <View
+                                    {...testProps(
+                                      'revision-pestOccurrenceItem',
+                                    )}
                                     key={`${occurrence.size}${Math.random()}`}
                                     style={{ flexDirection: 'row' }}
                                   >
@@ -254,7 +265,7 @@ const Revision: React.FC<SampleMipProps> = ({
                                       }}
                                     >
                                       <ItemListTextTable
-                                        testID={`${occurrence.size} revision-pestItemSize`}
+                                        {...testProps(`revision-pestItemSize`)}
                                       >
                                         {occurrence.size}
                                       </ItemListTextTable>
@@ -267,7 +278,9 @@ const Revision: React.FC<SampleMipProps> = ({
                                       }}
                                     >
                                       <ItemListTextTable
-                                        testID={`${occurrence.average} revision-pestItemAverage`}
+                                        {...testProps(
+                                          `revision-pestItemAverage`,
+                                        )}
                                       >
                                         {occurrence.average}
                                       </ItemListTextTable>
@@ -318,7 +331,11 @@ const Revision: React.FC<SampleMipProps> = ({
                 </Lines>
                 {pestsDiseases.map(pestDiseases => {
                   return (
-                    <View key={pestDiseases.id} style={{ flex: 1 }}>
+                    <View
+                      {...testProps('revision-pestDiseasesOccurrence')}
+                      key={pestDiseases.id}
+                      style={{ flex: 1 }}
+                    >
                       {pestDiseases.average !== '' ? (
                         <>
                           <HeaderList>
@@ -332,7 +349,11 @@ const Revision: React.FC<SampleMipProps> = ({
                                 justifyContent: 'center',
                               }}
                             >
-                              <ItemListTextTable testID="revision-pestDiseaseItemAverage">
+                              <ItemListTextTable
+                                {...testProps(
+                                  'revision-pestDiseaseItemAverage',
+                                )}
+                              >
                                 {pestDiseases.average}
                               </ItemListTextTable>
                             </View>
@@ -378,7 +399,11 @@ const Revision: React.FC<SampleMipProps> = ({
                 </Lines>
                 {naturalsPredator.map(naturalPredator => {
                   return (
-                    <View key={naturalPredator.id} style={{ flex: 1 }}>
+                    <View
+                      {...testProps('revision-naturalPredatorOccurrence')}
+                      key={naturalPredator.id}
+                      style={{ flex: 1 }}
+                    >
                       {naturalPredator.average !== '' ? (
                         <>
                           <HeaderList>
@@ -393,7 +418,11 @@ const Revision: React.FC<SampleMipProps> = ({
                                 justifyContent: 'center',
                               }}
                             >
-                              <ItemListTextTable testID="revision-naturalPredatorItemAverage">
+                              <ItemListTextTable
+                                {...testProps(
+                                  'revision-naturalPredatorItemAverage',
+                                )}
+                              >
                                 {naturalPredator.average}
                               </ItemListTextTable>
                             </View>
@@ -424,6 +453,7 @@ const Revision: React.FC<SampleMipProps> = ({
                 navigation.goBack();
               }}
               style={{ marginLeft: 4 }}
+              {...testProps('revision-saveButtonFormMip')}
             >
               Salvar
             </ButtonText>

@@ -35,6 +35,10 @@ interface PestItemProps {
   }): void;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
   const [open, setOpen] = useState(false);
 
@@ -46,7 +50,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
           <ItemListText> {pest.name} </ItemListText>
           {pest.occurrence.length === 0 ? (
             <ButtonIcon
-              testID={pest.name}
+              {...testProps(`${pest.name}`)}
               icon="plus"
               color="white"
               colorIcon="black"
@@ -55,7 +59,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
             />
           ) : open ? (
             <ButtonIcon
-              testID={`${pest.name} ChevronUp`}
+              {...testProps(`${pest.name} ChevronUp`)}
               icon="chevron-up"
               color="white"
               colorIcon="black"
@@ -64,7 +68,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
             />
           ) : (
             <ButtonIcon
-              testID={`${pest.name} ChevronDown`}
+              {...testProps(`${pest.name} ChevronDown`)}
               icon="chevron-down"
               color="white"
               colorIcon="black"
@@ -160,7 +164,7 @@ const PestItem: React.FC<PestItemProps> = ({ pest, openModal }) => {
           })}
           <View style={{ paddingVertical: 4 }}>
             <ButtonIcon
-              testID={`${pest.name} add other size`}
+              {...testProps(`${pest.name} add other size`)}
               icon="plus"
               colorIcon="white"
               color="green"

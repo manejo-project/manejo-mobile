@@ -147,12 +147,17 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
     [setFilterList, pestsDiseases],
   );
 
+  function testProps(id: string) {
+    return { testID: id, accessibilityLabel: id };
+  }
+
   return (
     <>
       <Header>Doenças das Pragas</Header>
       <Container>
         <Card title="Selecione a doença:">
           <SearchInput
+            {...testProps('pestDiseasesOccurrence-pestDiseasesSearchInput')}
             placeholder="Buscar por Doença"
             value={filter}
             onChangeText={value => {
@@ -189,7 +194,9 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
                     </View>
                   ) : (
                     <ButtonIcon
-                      testID="pestDiseasesOccurrence-pestDiseasesItemButtonAdd"
+                      {...testProps(
+                        'pestDiseasesOccurrence-pestDiseasesItemButtonAdd',
+                      )}
                       icon="plus"
                       color="white"
                       colorIcon="black"
@@ -218,6 +225,7 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
             color="green"
             onPress={next}
             style={{ marginLeft: 4 }}
+            {...testProps('pestDiseasesOccurrence-nextButton')}
           >
             Próximo
           </ButtonText>
@@ -231,6 +239,9 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
 
               <Card title="Digite a média encontrada:">
                 <Input
+                  {...testProps(
+                    'pestDiseasesOccurrence-pestDiseasesItemAverageInput',
+                  )}
                   placeholder="0,00"
                   onChangeText={value => {
                     setAverage(value);
@@ -252,7 +263,9 @@ const PestDiseasesOccurrence: React.FC<PestDiseasesDataProps> = ({
                   }}
                 />
                 <ButtonIcon
-                  testID="pestDiseasesOccurrence-pestDiseasesItemAverageButtonConfirm"
+                  {...testProps(
+                    'pestDiseasesOccurrence-pestDiseasesItemAverageButtonConfirm',
+                  )}
                   size="large"
                   color="green"
                   colorIcon="white"

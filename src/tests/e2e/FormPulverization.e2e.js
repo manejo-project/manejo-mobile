@@ -63,7 +63,7 @@ describe('FormPulverization component', () => {
       { action: 'wait', ms: 200 }
     ])
 
-    driver.touchAction([
+    await driver.touchAction([
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',

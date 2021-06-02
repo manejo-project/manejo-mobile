@@ -18,6 +18,7 @@ const Dashboard: React.FC = () => {
         onPress={() => {
           navigation.navigate('Mip');
         }}
+        {...testProps('mip-form-button')}
       >
         Mip
       </ButtonText>
