@@ -9,6 +9,10 @@ interface IHeader {
   children: string;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const Header: React.FC<IHeader> = ({ children, ...rest }) => {
   const navigation = useNavigation();
 
@@ -23,7 +27,7 @@ const Header: React.FC<IHeader> = ({ children, ...rest }) => {
       >
         Cancelar
       </ButtonText>
-      <Text>{children}</Text>
+      <Text {...testProps('header-title')}>{children}</Text>
     </Container>
   );
 };

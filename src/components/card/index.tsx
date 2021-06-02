@@ -12,6 +12,10 @@ interface ICard {
   size?: 'small' | 'large';
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const Card: React.FC<ICard> = ({
   title,
   children,
@@ -20,11 +24,11 @@ const Card: React.FC<ICard> = ({
   edit,
   remove,
 }) => (
-  <Container testID="card" size={size}>
+  <Container {...testProps('card')} size={size}>
     <Header flag={!!remove || !!edit}>
       {remove && (
         <ButtonIcon
-          testID="card-remove"
+          {...testProps('card-remove')}
           size="small"
           icon="trash"
           color="red"
@@ -35,7 +39,7 @@ const Card: React.FC<ICard> = ({
       )}
       {edit && (
         <ButtonIcon
-          testID="card-edit"
+          {...testProps('card-edit')}
           size="small"
           icon="pencil-alt"
           color="yellow"
@@ -44,7 +48,9 @@ const Card: React.FC<ICard> = ({
           style={{ position: 'absolute', right: 8, zIndex: 100 }}
         />
       )}
-      <HeaderText flag={!!remove}>{title}</HeaderText>
+      <HeaderText flag={!!remove} {...testProps('card-title')}>
+        {title}
+      </HeaderText>
     </Header>
     <Body color={color}>{children}</Body>
   </Container>

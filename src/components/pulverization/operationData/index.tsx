@@ -28,6 +28,10 @@ interface OperationDataProps {
   onChangeHandlerPulverization(input: string, value: any): void;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const OperationData: React.FC<OperationDataProps> = ({
   nextStep,
   type,
@@ -76,21 +80,21 @@ const OperationData: React.FC<OperationDataProps> = ({
             />
             {show && (
               <Calendar
-                testID="operationData-dateTimePicker"
                 value={pulverization.sampleDate}
                 display="default"
                 onChange={onChange}
+                {...testProps('operationData-dateTimePicker')}
               />
             )}
           </Card>
           <Card title="Selecione o estádio da cultura">
             <PickerContainer>
               <Picker
-                testID="operationData-growthPhasePicker"
                 selectedValue={pulverization.growthPhase}
                 onValueChange={(itemValue, itemIndex) =>
                   onChangeHandlerPulverization('growthPhase', itemValue)
                 }
+                {...testProps('operationData-growthPhasePicker')}
               >
                 <Picker.Item label="V1" value="V1" />
                 <Picker.Item label="V2" value="V2" />
@@ -102,32 +106,32 @@ const OperationData: React.FC<OperationDataProps> = ({
           </Card>
           <Card title="Volume de calda (l/ha)">
             <Input
-              testID="operationData-caldaVolumeInput"
               onChangeText={value => {
                 onChangeHandlerPulverization('caldaVolume', value);
               }}
               value={pulverization.caldaVolume}
               keyboardType="numeric"
               placeholder="0,0"
+              {...testProps('operationData-caldaVolumeInput')}
             />
           </Card>
           <Card title="Pulverização Parcial?">
             <Buttons>
               <No
-                testID="operationData-noButton"
                 onPress={() => {
                   onChangeHandlerPulverization('selected', false);
                 }}
                 flag={!pulverization.selected}
+                {...testProps('operationData-noButton')}
               >
                 <NoText>Não</NoText>
               </No>
               <Yes
-                testID="operationData-yesButton"
                 onPress={() => {
                   onChangeHandlerPulverization('selected', true);
                 }}
                 flag={pulverization.selected}
+                {...testProps('operationData-yesButton')}
               >
                 <YesText>Sim</YesText>
               </Yes>
@@ -140,34 +144,22 @@ const OperationData: React.FC<OperationDataProps> = ({
             )}
             {showPartial && (
               <Calendar
-                testID="operationData-datePartialTimePicker"
                 value={pulverization.datePartial}
                 display="default"
                 onChange={onChangePartial}
+                {...testProps('operationData-datePartialTimePicker')}
               />
             )}
           </Card>
-          {type === 'update' ? (
-            <ButtonText
-              testID="operationData-nextButton-update"
-              size="large"
-              color="green"
-              onPress={next}
-              disable={!pulverization.caldaVolume}
-            >
-              Próximo
-            </ButtonText>
-          ) : (
-            <ButtonText
-              testID="operationData-nextButton-create"
-              size="large"
-              color="green"
-              onPress={next}
-              disable={!pulverization.caldaVolume}
-            >
-              Próximo
-            </ButtonText>
-          )}
+          <ButtonText
+            size="large"
+            color="green"
+            onPress={next}
+            disable={!pulverization.caldaVolume}
+            {...testProps('operationData-nextButton-create')}
+          >
+            Próximo
+          </ButtonText>
         </Container>
       </View>
     </KeyboardAwareScrollView>

@@ -37,6 +37,10 @@ interface OperationDataProps {
   onChangeHandlerProduct(input: string, value: any): void;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const InsetData: React.FC<OperationDataProps> = ({
   nextYes,
   nextNo,
@@ -58,25 +62,25 @@ const InsetData: React.FC<OperationDataProps> = ({
           <Cards>
             <Card title="Dosagem do Produto (Unidade/ha)">
               <Input
-                testID="insertData-doseInput"
                 onChangeText={value => {
                   onChangeHandlerProduct('dose', value);
                 }}
                 value={product.dose}
                 keyboardType="numeric"
                 placeholder="0,0"
+                {...testProps('insertData-doseInput')}
               />
             </Card>
 
             <Card title="Preço do produto (R$/Unidade)">
               <Input
-                testID="insertData-productPriceInput"
                 onChangeText={value => {
                   onChangeHandlerProduct('productPrice', value);
                 }}
                 value={product.productPrice}
                 keyboardType="numeric"
                 placeholder="0,0"
+                {...testProps('insertData-productPriceInput')}
               />
             </Card>
           </Cards>
@@ -93,10 +97,13 @@ const InsetData: React.FC<OperationDataProps> = ({
                 </HeaderView>
                 <BodyView>
                   <ButtonsYesNo>
-                    <No onPress={nextNo} testID="insertData-noButton">
+                    <No onPress={nextNo} {...testProps('insertData-noButton')}>
                       <NoText>Não</NoText>
                     </No>
-                    <Yes onPress={nextYes} testID="insertData-yesButton">
+                    <Yes
+                      onPress={nextYes}
+                      {...testProps('insertData-yesButton')}
+                    >
                       <YesText>Sim</YesText>
                     </Yes>
                   </ButtonsYesNo>
@@ -106,21 +113,21 @@ const InsetData: React.FC<OperationDataProps> = ({
           </Modal>
           <Buttons>
             <ButtonText
-              testID="button-prev"
               size="small"
               color="yellow"
               onPress={prev}
               style={{ marginRight: 4 }}
+              {...testProps('button-prev')}
             >
               Anterior
             </ButtonText>
             <ButtonText
-              testID="insertData-nextButton"
               size="small"
               color="green"
               onPress={() => setModalVisible(true)}
               style={{ marginLeft: 4 }}
               disable={!product.dose || !product.productPrice}
+              {...testProps('insertData-nextButton')}
             >
               Próximo
             </ButtonText>

@@ -4,6 +4,10 @@ import ButtonText from '../../components/buttonText';
 
 import { Container } from './styles';
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const Dashboard: React.FC = () => {
   const navigation = useNavigation();
   return (
@@ -18,12 +22,12 @@ const Dashboard: React.FC = () => {
         Mip
       </ButtonText>
       <ButtonText
-        testID="teste"
         color="green"
         size="large"
         onPress={() => {
           navigation.navigate('Pulverization');
         }}
+        {...testProps('pulverization-form-button')}
       >
         Pulverização
       </ButtonText>

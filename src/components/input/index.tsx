@@ -13,8 +13,12 @@ const Input: React.FC<TextInputProps> = ({ ...rest }) => {
     setIsFocused(false);
   }, []);
 
+  function testProps(id: string) {
+    return { testID: id, accessibilityLabel: id };
+  }
+
   return (
-    <Container testID="input-container" isFocused={isFocused}>
+    <Container {...testProps('input-container')} isFocused={isFocused}>
       <TextInput
         placeholderTextColor="#666360"
         onFocus={handleInputFocus}

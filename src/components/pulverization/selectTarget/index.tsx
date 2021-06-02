@@ -25,6 +25,10 @@ export interface Target {
   name: string;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const SelectTarget: React.FC<PickerProps> = ({
   nextStep,
   prevStep,
@@ -107,18 +111,18 @@ const SelectTarget: React.FC<PickerProps> = ({
             onChangeText={value => {
               onChangeHandler(value);
             }}
+            {...testProps('search-input')}
           />
           <TargetList
             data={filterList}
             keyExtractor={targetItem => targetItem.name}
             renderItem={({ item: targetItem }) => (
               <ItemList
-                testID={`selectTarget-itemList-${targetItem.name.replace(
-                  /\s/g,
-                  '',
-                )}`}
                 onPress={() => next(targetItem.name)}
                 selected={targetItem.name === product.target}
+                {...testProps(
+                  `selectTarget-itemList-${targetItem.name.replace(/\s/g, '')}`,
+                )}
               >
                 <ItemListText>{targetItem.name.toUpperCase()}</ItemListText>
               </ItemList>
@@ -130,7 +134,7 @@ const SelectTarget: React.FC<PickerProps> = ({
           size="large"
           color="yellow"
           onPress={prev}
-          testID="selectTarget-button-prev"
+          {...testProps('selectTarget-button-prev')}
         >
           Anterior
         </ButtonText>

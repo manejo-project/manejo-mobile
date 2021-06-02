@@ -11,9 +11,13 @@ interface ICalendarProps extends BaseButtonProperties {
   onPress?(): void;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const CalendarContainer: React.FC<ICalendarProps> = ({ date, onPress }) => {
   return (
-    <Container testID="calendar-container" onPress={onPress}>
+    <Container {...testProps('calendar-container')} onPress={onPress}>
       <TextDate>
         {date.getDate()} / {date.getMonth() + 1} / {date.getFullYear()}
       </TextDate>

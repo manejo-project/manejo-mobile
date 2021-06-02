@@ -62,6 +62,10 @@ export interface Product {
   name: string;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const Revision: React.FC<Props> = ({
   pulverization,
   products,
@@ -71,13 +75,13 @@ const Revision: React.FC<Props> = ({
   const navigation = useNavigation();
   return (
     <KeyboardAwareScrollView>
-      <View testID="revision">
+      <View {...testProps('revision')}>
         <Header>Revisão</Header>
         <Container>
           <Card title="Operação" edit={edit}>
             <DateOperation>
               <ImageDateOperation source={iconCalendar} />
-              <TextDateOperation testID="revision-sampleDate">
+              <TextDateOperation {...testProps('revision-sampleDate')}>
                 {pulverization.sampleDate.getDate()} /{' '}
                 {pulverization.sampleDate.getMonth() + 1} /{' '}
                 {pulverization.sampleDate.getFullYear()}
@@ -86,14 +90,14 @@ const Revision: React.FC<Props> = ({
             <Data>
               <CultureStage>
                 <ImageCultureStage source={leaf} />
-                <CultureStageText testID="revision-growthPhase">
+                <CultureStageText {...testProps('revision-growthPhase')}>
                   {pulverization.growthPhase}
                 </CultureStageText>
                 <LabelCultureStage>Cultura</LabelCultureStage>
               </CultureStage>
               <Volume>
                 <ImageVolume source={drop} />
-                <VolumeText testID="revision-volume">
+                <VolumeText {...testProps('revision-volume')}>
                   {pulverization.caldaVolume}
                 </VolumeText>
                 <LabelVolume>Volume de Calda (l/ha)</LabelVolume>
@@ -109,7 +113,7 @@ const Revision: React.FC<Props> = ({
                   }}
                 >
                   <ImageDatePartial source={iconCalendar} />
-                  <TextDatePartial testID="revision-datePartial">
+                  <TextDatePartial {...testProps('revision-datePartial')}>
                     {pulverization.datePartial.getDate()} /{' '}
                     {pulverization.datePartial.getMonth() + 1} /{' '}
                     {pulverization.datePartial.getFullYear()}
@@ -121,11 +125,11 @@ const Revision: React.FC<Props> = ({
           </Card>
           <Card title="Produtos Usados">
             <ButtonText
-              testID="revision-newProductButton"
               size="small"
               color="green"
               onPress={newProduct}
               style={{ marginTop: 0 }}
+              {...testProps('revision-newProductButton')}
             >
               + Novo Produto
             </ButtonText>
@@ -184,6 +188,7 @@ const Revision: React.FC<Props> = ({
             onPress={() => {
               navigation.goBack();
             }}
+            {...testProps('revision-saveButton')}
           >
             Salvar
           </ButtonText>

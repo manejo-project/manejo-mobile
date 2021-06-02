@@ -26,6 +26,10 @@ export interface Class {
   name: string;
 }
 
+function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}
+
 const SelectClass: React.FC<PickerProps> = ({
   nextStep,
   prevStep,
@@ -83,18 +87,18 @@ const SelectClass: React.FC<PickerProps> = ({
             onChangeText={value => {
               onChangeHandler(value);
             }}
+            {...testProps('search-input')}
           />
           <ClassList
             data={filterList}
             keyExtractor={classItem => classItem.name}
             renderItem={({ item: classItem }) => (
               <ItemList
-                testID={`selectClass-itemList-${classItem.name.replace(
-                  /\s/g,
-                  '',
-                )}`}
                 onPress={() => next(classItem.name)}
                 selected={classItem.name === product.classe}
+                {...testProps(
+                  `selectClass-itemList-${classItem.name.replace(/\s/g, '')}`,
+                )}
               >
                 <ItemListText>{classItem.name}</ItemListText>
               </ItemList>
@@ -111,7 +115,7 @@ const SelectClass: React.FC<PickerProps> = ({
             size="large"
             color="yellow"
             onPress={prev}
-            testID="selectClass-button-prev"
+            {...testProps('selectClass-button-prev')}
           >
             Anterior
           </ButtonText>

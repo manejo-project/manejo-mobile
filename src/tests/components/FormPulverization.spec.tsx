@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { fireEvent, render } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 import React from 'react';
@@ -97,7 +98,7 @@ describe('FormPulverization component', () => {
   });
 
   it('should be able to do a pulverization sample with two products', () => {
-    const { getByTestId } = render(<FormPulverization />);
+    const { getByTestId, getAllByTestId } = render(<FormPulverization />);
 
     const caldaVolumeInput = getByTestId('operationData-caldaVolumeInput');
     const nextButtonCreate = getByTestId('operationData-nextButton-create');
@@ -127,22 +128,15 @@ describe('FormPulverization component', () => {
 
     fireEvent(getByTestId('insertData-noButton'), 'press');
 
-    let productNames = '';
+    const product1Name = getAllByTestId('card-title')[2].children[0];
+    const product2Name = getAllByTestId('card-title')[3].children[0];
 
-    getByTestId('revision')
-      .findAllByType(Card)
-      .forEach(p => {
-        if (p.props.title === 'PREVINIL (G)' || p.props.title === 'FOX (L)') {
-          productNames += p.props.title;
-        }
-      });
-
+    expect(product1Name).toBe('PREVINIL (G)');
+    expect(product2Name).toBe('FOX (L)');
     expect(getByTestId('revision-volume').children[0]).toBe('2');
-    expect(productNames.indexOf('PREVINIL (G)') > -1).toBeTruthy();
-    expect(productNames.indexOf('FOX (L)') > -1).toBeTruthy();
   });
   it('should be able to make a product addition by button +NewProduct', () => {
-    const { getByTestId } = render(<FormPulverization />);
+    const { getByTestId, getAllByTestId } = render(<FormPulverization />);
 
     const caldaVolumeInput = getByTestId('operationData-caldaVolumeInput');
     const nextButtonCreate = getByTestId('operationData-nextButton-create');
@@ -174,22 +168,12 @@ describe('FormPulverization component', () => {
 
     fireEvent(getByTestId('insertData-noButton'), 'press');
 
-    let productNames = '';
+    const product1Name = getAllByTestId('card-title')[2].children[0];
+    const product2Name = getAllByTestId('card-title')[3].children[0];
 
-    getByTestId('revision')
-      .findAllByType(Card)
-      .forEach(p => {
-        if (
-          p.props.title === 'PREVINIL (G)' ||
-          p.props.title === 'PREMIO (G)'
-        ) {
-          productNames += p.props.title;
-        }
-      });
-
+    expect(product1Name).toBe('PREVINIL (G)');
+    expect(product2Name).toBe('PREMIO (G)');
     expect(getByTestId('revision-volume').children[0]).toBe('2');
-    expect(productNames.indexOf('PREVINIL (G)') > -1).toBeTruthy();
-    expect(productNames.indexOf('PREMIO (G)') > -1).toBeTruthy();
   });
   it('should be able to change the operation data', () => {
     const { getByTestId, getAllByTestId } = render(<FormPulverization />);
@@ -218,28 +202,20 @@ describe('FormPulverization component', () => {
 
     fireEvent(getByTestId('card-edit'), 'press');
 
-    const nextButtonUpdate = getByTestId('operationData-nextButton-update');
+    const nextButtonUpdate = getByTestId('operationData-nextButton-create');
 
     fireEvent.changeText(getByTestId('operationData-caldaVolumeInput'), '4');
     fireEvent(getByTestId('operationData-noButton'), 'press');
 
     fireEvent(nextButtonUpdate, 'press');
 
-    let productName;
-
-    getByTestId('revision')
-      .findAllByType(Card)
-      .forEach(p => {
-        if (p.props.title === 'PREVINIL (G)') {
-          productName = p.props.title;
-        }
-      });
+    const productName = getAllByTestId('card-title')[2].children[0];
 
     expect(getByTestId('revision-volume').children[0]).toBe('4');
     expect(productName).toBe('PREVINIL (G)');
   });
   it('should be able to navigate back between screens and edit choices', () => {
-    const { getByTestId } = render(<FormPulverization />);
+    const { getByTestId, getAllByTestId } = render(<FormPulverization />);
 
     fireEvent.changeText(getByTestId('operationData-caldaVolumeInput'), '2');
     fireEvent(getByTestId('operationData-nextButton-create'), 'press');
@@ -266,22 +242,16 @@ describe('FormPulverization component', () => {
 
     fireEvent(getByTestId('insertData-noButton'), 'press');
 
-    let productName;
-
-    getByTestId('revision')
-      .findAllByType(Card)
-      .forEach(p => {
-        if (p.props.title === 'Abamex (L)') {
-          productName = p.props.title;
-        }
-      });
+    const productName = getAllByTestId('card-title')[2].children[0];
 
     expect(getByTestId('revision-volume').children[0]).toBe('4');
     expect(productName).toBe('Abamex (L)');
   });
 
   it('should be able to navigate using the searchInput', () => {
-    const { getByTestId, getByPlaceholderText } = render(<FormPulverization />);
+    const { getByTestId, getByPlaceholderText, getAllByTestId } = render(
+      <FormPulverization />,
+    );
 
     const caldaVolumeInput = getByTestId('operationData-caldaVolumeInput');
     const nextButtonCreate = getByTestId('operationData-nextButton-create');
@@ -313,15 +283,7 @@ describe('FormPulverization component', () => {
 
     fireEvent(getByTestId('insertData-noButton'), 'press');
 
-    let productName;
-
-    getByTestId('revision')
-      .findAllByType(Card)
-      .forEach(p => {
-        if (p.props.title === 'GRAMOCIL (L)') {
-          productName = p.props.title;
-        }
-      });
+    const productName = getAllByTestId('card-title')[2].children[0];
 
     expect(getByTestId('revision-volume').children[0]).toBe('2');
     expect(productName).toBe('GRAMOCIL (L)');
