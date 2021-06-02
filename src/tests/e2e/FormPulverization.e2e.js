@@ -64,6 +64,7 @@ describe('FormPulverization component', () => {
     ])
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -112,6 +113,7 @@ describe('FormPulverization component', () => {
     const textVolume = await volume.getText();
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -186,6 +188,7 @@ describe('FormPulverization component', () => {
     ])
 
     driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -258,6 +261,7 @@ describe('FormPulverization component', () => {
     const textVolume = await volume.getText();
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -337,6 +341,7 @@ describe('FormPulverization component', () => {
     ])
 
     driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -411,11 +416,11 @@ describe('FormPulverization component', () => {
     const textVolume = await volume.getText();
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
     ]);
-
 
     const cards = await driver.$$("~card");
 
@@ -490,7 +495,8 @@ describe('FormPulverization component', () => {
       { action: 'wait', ms: 200 }
     ])
 
-    driver.touchAction([
+    await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -559,6 +565,7 @@ describe('FormPulverization component', () => {
     const textVolume = await volume.getText();
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',
@@ -723,6 +730,7 @@ describe('FormPulverization component', () => {
     const textVolume = await volume.getText();
 
     await driver.touchAction([
+      { action: 'wait', ms: 300 },
       { action: 'press', x: 1000, y: 1639 },
       { action: 'moveTo', x: 963, y: 911 },
       'release',

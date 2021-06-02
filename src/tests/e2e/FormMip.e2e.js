@@ -138,9 +138,9 @@ describe('FormMip component', () => {
     expect(averagePestText).toBe('2,5');
 
     await driver.touchAction([
-      { action: 'wait', ms: 400 },
-      {action: 'press', x: 770, y: 1955},
-      {action: 'moveTo', x: 770, y: 1432},
+      { action: 'wait', ms: 300 },
+      { action: 'press', x: 770, y: 1955},
+      { action: 'moveTo', x: 770, y: 1432},
       'release'
     ]);
 
@@ -308,9 +308,9 @@ describe('FormMip component', () => {
     expect(average2PestText).toBe('1,5');
 
     await driver.touchAction([
-      { action: 'wait', ms: 400 },
-      {action: 'press', x: 770, y: 1955},
-      {action: 'moveTo', x: 770, y: 1432},
+      { action: 'wait', ms: 300 },
+      { action: 'press', x: 770, y: 1955},
+      { action: 'moveTo', x: 770, y: 1432},
       'release'
     ]);
 
@@ -486,9 +486,9 @@ describe('FormMip component', () => {
     expect(desfolhaText).toBe('20%');
 
     await driver.touchAction([
-      { action: 'wait', ms: 400 },
-      {action: 'press', x: 770, y: 1955},
-      {action: 'moveTo', x: 770, y: 1432},
+      { action: 'wait', ms: 300 },
+      { action: 'press', x: 770, y: 1955},
+      { action: 'moveTo', x: 770, y: 1432},
       'release'
     ]);
 

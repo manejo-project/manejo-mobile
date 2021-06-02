@@ -11,8 +11,8 @@ exports.config = {
     appiumVersion: '1.21.0',
     platformName: "Android",
     platformVersion: "9",
-    deviceName: process.env.DEVICE_NAME,
-    app: process.env.APP_PATH,
+    deviceName: 'emulator-5554',
+    app: '/home/bruna/Documentos/IC/manejomobile/android/app/build/outputs/apk/debug/app-debug.apk',
     appPackage: "com.manejomobile",
     appActivity: ".MainActivity",
     automationName: "UiAutomator1"
